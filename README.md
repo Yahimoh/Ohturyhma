@@ -19,8 +19,12 @@
 4. Lataa riippuvuudet
 ```poetry install ```. Jos asennusprosessi antaa virheilmoituksen paketin `psycopg2` kohdalla, testaa asentaa kirjasto `libpq-dev`. (Linux)
 
-6. Luo projektin juurihakemistoon tiedosto ```.env``` ja kopioi siihen ```.env.templates``` sisältö. Aseta ```DATABASE_URL``` arvo. Kokeile yhteyden muodostamista terminaalissa komennolla ```psql <url>```, jossa ```url = DATABASE_URL```.
+5. Luo postgresql-tietokanta nimellä `ohtu`.
 
-7. Käynnistä sovellus
+6. Kopioi tiedoston `schema.sql` sisältö tietokantaan, esim. komennolla `psql ohtu < schema.sql`.
+
+7. Luo projektin juurihakemistoon tiedosto ```.env``` ja kopioi siihen tiedoston ```.env.template``` sisältö. Aseta muuttujalle ```DATABASE_URL``` arvoksi luomasi tietokannan osoite. (esim. `postgresql:///ohtu`) Kokeile yhteyden muodostamista terminaalissa komennolla ```psql <url>```, jossa ```url = DATABASE_URL```.
+
+8. Käynnistä sovellus
 ```flask run```.
 
