@@ -17,10 +17,10 @@
 ```git clone git@github.com:Yahimoh/Ohturyhma.git```.
 
 4. Lataa riippuvuudet
-```poetry install ```.
+```poetry install ```. Jos asennusprosessi antaa virheilmoituksen paketin `psycopg2` kohdalla, testaa asentaa kirjasto `libpq-dev`. (Linux)
 
-5. Luo projektin juurihakemistoon tiedosto ```.env``` ja kopioi siihen ```.env.templates``` sisältö. Aseta ```DATABASE_URL``` arvo. Kokeile yhteyden muodostamista terminaalissa komennolla ```psql <url>```, jossa ```url = DATABASE_URL```.
+6. Luo projektin juurihakemistoon tiedosto ```.env``` ja kopioi siihen ```.env.templates``` sisältö. Aseta ```DATABASE_URL``` arvo. Kokeile yhteyden muodostamista terminaalissa komennolla ```psql <url>```, jossa ```url = DATABASE_URL```.
 
-6. Käynnistä sovellus
+7. Käynnistä sovellus
 ```flask run```.
 
