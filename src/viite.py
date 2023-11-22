@@ -17,11 +17,11 @@ class Viite:
         sanakirjan perusteella.
         """
         # Yahia muuta tämä siten, että oikean näköinen bibtex-muoto
-        Viite = ""
+        viite = ""
         for avain, tieto in self.tiedot.items():
-            Viite += f"{avain}: {tieto}"
-            Viite += "\n"
-        return Viite
+            viite += f"{avain}: {tieto}"
+            viite += "\n"
+        return viite
 
 class ViiteLista:
     """Luokka hallinnoimaan viitteitä. 
