@@ -8,6 +8,7 @@ packages = [{include = "ohjelmistotuotanto_projekti"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+flask = "^3.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
