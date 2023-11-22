@@ -2,13 +2,15 @@
 <title>Lähdeviitteet</title>
 <h1>Lähdeviitteet</h1>
 <h2>Lisää kirjanviite:</h2>
-<form action="/" method="POST">
+<form action="/send" method="POST">
+    <p>Viitteen nimi:
+    <input type="text" name="viite"></p>
     <p>Kirjailija:
     <input type="text" name="kirjailija"></p>
     <p>Otsikko:
     <input type="text" name="otsikko"></p>
     <p>Vuosi:
-    <input type="text" name="vuosi"></p>
+    <input type="number" name="vuosi"></p>
     <p>Kustantaja:
     <input type="text" name="kustantaja"></p>
     <input type="submit" value="Lisää">

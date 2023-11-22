@@ -25,6 +25,5 @@
 
 7. Luo projektin juurihakemistoon tiedosto ```.env``` ja kopioi siihen tiedoston ```.env.template``` sisältö. Aseta muuttujalle ```DATABASE_URL``` arvoksi luomasi tietokannan osoite. (esim. `postgresql:///ohtu`) Kokeile yhteyden muodostamista terminaalissa komennolla ```psql <url>```, jossa ```url = DATABASE_URL```.
 
-8. Käynnistä sovellus
-```flask run```.
-
+8. Käynnistä sovellus komennolla 
+```poetry run flask run```.
