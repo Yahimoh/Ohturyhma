@@ -41,7 +41,7 @@ class ViiteLista:
         kirjaviitteet on esitetty 
         bibtex-muodossa merkkijonona.
         """
-        return self.viitteet
+        return [viite.__str__() for viite in self.viitteet]
 
 
 
