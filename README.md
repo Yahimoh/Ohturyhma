@@ -11,12 +11,16 @@
 - Koodi on katselmoitu
 
 ### Asennusohjeet
-1. Kloonaa repositorio
-``` git clone git@github.com:Yahimoh/Ohturyhma.git```
+1. Asenna PostgreSQL esimerkiksi [tällä](https://www.postgresql.org/download/) ohjeella.
+   
+2. Kloonaa repositorio
+```git clone git@github.com:Yahimoh/Ohturyhma.git```.
 
-2. Lataa riippuvuudet
-``` poetry install ```
+4. Lataa riippuvuudet
+```poetry install ```.
 
-4. Käynnistä sovellus
-```poetry run invoke start```
+5. Luo projektin juurihakemistoon tiedosto ```.env``` ja kopioi siihen ```.env.templates``` sisältö. Aseta ```DATABASE_URL``` arvo. Kokeile yhteyden muodostamista terminaalissa komennolla ```psql <url>```, jossa ```url = DATABASE_URL```.
+
+6. Käynnistä sovellus
+```flask run```.
 
