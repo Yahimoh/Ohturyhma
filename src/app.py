@@ -1,8 +1,8 @@
+from os import getenv
 from flask import Flask
 from flask import redirect, render_template, request
-from src.database import db
-from sqlalchemy.sql import text
-from os import getenv
+from src.database import lisaa_viite, db, lue_viitteet
+from src.viite import Viite
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = getenv("DATABASE_URL")
@@ -14,18 +14,14 @@ def order():
 
 @app.route("/send", methods=["POST"])
 def send():
-    viite = request.form["viite"]
-    kirjailija = request.form["kirjailija"]
-    otsikko = request.form["otsikko"]
-    vuosi = int(request.form["vuosi"])
-    kustantaja = request.form["kustantaja"]
+    viite = Viite({
+        "nimi": request.form["viite"],
+        "kirjailija": request.form["kirjailija"],
+        "otsikko": request.form["otsikko"],
+        "vuosi": int(request.form["vuosi"]),
+        "kustantaja": request.form["kustantaja"],
+    })
 
-    sql = text("INSERT INTO KirjaViitteet (viite, kirjailija, otsikko, vuosi, kustantaja) VALUES (:viite, :kirjailija, :otsikko, :vuosi, :kustantaja);")
-    db.session.execute(sql, {"viite": viite,
-                             "kirjailija": kirjailija,
-                             "otsikko": otsikko,
-                             "vuosi": vuosi, 
-                             "kustantaja": kustantaja})
-    db.session.commit()
+    lisaa_viite(viite)
 
     return redirect("/")
