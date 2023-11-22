@@ -8,9 +8,11 @@
 
 ### Asennusohjeet
 1. Kloonaa repositorio
-> git clone git@github.com:Yahimoh/Ohturyhma.git
+``` git clone git@github.com:Yahimoh/Ohturyhma.git```
+
 2. Lataa riippuvuudet
-> poetry install
-3. Käynnistä sovellus
-> poetry run invoke start
+``` poetry install ```
+
+4. Käynnistä sovellus
+```poetry run invoke start```
 
