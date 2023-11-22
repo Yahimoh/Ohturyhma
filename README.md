@@ -1,5 +1,9 @@
 # Ohturyhma
 
+[Product backlog](https://helsinkifi-my.sharepoint.com/:x:/g/personal/otpe_ad_helsinki_fi/EZ52qyApLT5KhC2W8aO7UAoBViIUBE0OcVd7s9KNCpp-zg?e=4%3AQaeh74&fromShare=true&at=9)
+
+[Sprint backlog](https://helsinkifi-my.sharepoint.com/:x:/g/personal/otpe_ad_helsinki_fi/EQPD5vKTcAJCqVxXUmrJUmQB8VH2PkiYl4GyYAWsyuskJA?e=4%3AqtdKDz&fromShare=true&at=9)
+
 
 ### Definition of done
 - Ominaisuus on toteutettu ja testattu
@@ -8,9 +12,11 @@
 
 ### Asennusohjeet
 1. Kloonaa repositorio
-> git clone git@github.com:Yahimoh/Ohturyhma.git
+``` git clone git@github.com:Yahimoh/Ohturyhma.git```
+
 2. Lataa riippuvuudet
-> poetry install
-3. Käynnistä sovellus
-> poetry run invoke start
+``` poetry install ```
+
+4. Käynnistä sovellus
+```poetry run invoke start```
 
