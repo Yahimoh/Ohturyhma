@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<title>Lähdeviitteet</title>
+<html>
+<head>
+    <title>Lähdeviitteet</title>
+</head>
+<body>
 <h1>Lähdeviitteet</h1>
-<h2>Lisää kirjanviite:</h2>
+<h2>Lisää kirjaviite:</h2>
 <form action="/send" method="POST">
     <p>Viitteen nimi:
     <input type="text" name="viite"></p>
@@ -17,5 +21,9 @@
 </form>
 <hr>
 <h2>Lisätyt kirjaviitteet</h2>
-    <!-- Tähän alle lista lisätyistä kirjaviitteisä -->
-
+    {% for viite in viitteet %}
+    <div class="viite">{{ viite }}</div>
+    <br>
+    {% endfor %}
+</body>
+</html>

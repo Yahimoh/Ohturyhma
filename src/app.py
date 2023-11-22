@@ -10,7 +10,7 @@ db.init_app(app)
 
 @app.route("/")
 def order():
-    return render_template("index.html")
+    return render_template("index.html", viitteet=lue_viitteet())
 
 @app.route("/send", methods=["POST"])
 def send():
