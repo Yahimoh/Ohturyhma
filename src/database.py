@@ -12,7 +12,7 @@ def lisaa_viite(viite: Viite):
                 (:viite, :kirjailija, :otsikko, :vuosi, :kustantaja);
             """)
     db.session.execute(sql, {
-        "viite":       viite.tiedot["nimi"],
+        "viite":       viite.tiedot["viite"],
         "kirjailija":  viite.tiedot["kirjailija"],
         "otsikko":     viite.tiedot["otsikko"],
         "vuosi":       viite.tiedot["vuosi"], 
