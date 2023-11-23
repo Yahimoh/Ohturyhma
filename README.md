@@ -1,3 +1,4 @@
+![GHA workflow badge](https://github.com/Yahimoh/ohtuvarasto/workflows/CI/badge.svg)
 [![codecov](https://codecov.io/gh/Yahimoh/Ohturyhma/graph/badge.svg?token=J15WYOCCG8)](https://codecov.io/gh/Yahimoh/Ohturyhma)
 
 # Ohturyhma
