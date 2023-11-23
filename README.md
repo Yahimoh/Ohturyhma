@@ -1,3 +1,6 @@
+![GHA workflow badge](https://github.com/Yahimoh/ohtuvarasto/workflows/CI/badge.svg)
+[![codecov](https://codecov.io/gh/Yahimoh/Ohturyhma/graph/badge.svg?token=J15WYOCCG8)](https://codecov.io/gh/Yahimoh/Ohturyhma)
+
 # Ohturyhma
 
 [Product backlog](https://helsinkifi-my.sharepoint.com/:x:/g/personal/otpe_ad_helsinki_fi/EZ52qyApLT5KhC2W8aO7UAoBViIUBE0OcVd7s9KNCpp-zg?e=4%3AQaeh74&fromShare=true&at=9)
