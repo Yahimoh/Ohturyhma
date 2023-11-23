@@ -1,4 +1,4 @@
-from src.viite import ViiteLista, Viite
+from src.viite import Viite
 import unittest
 
 class ViiteTest(unittest.TestCase):
@@ -14,22 +14,4 @@ class ViiteTest(unittest.TestCase):
         data = {"esim": "vastaus", "esim2": "vastaus2"}
         viite = Viite(data)
         self.assertEqual(dict, type(viite.tiedot))
-
-class ViiteListaTest(unittest.TestCase):
-    def setUp(self):
-        self.viite = Viite({"esim": "vastaus", "esim2": "vastaus2"})
-
-    def test_viitelistaan_voi_lisaa_viitteen(self):
-        lista = ViiteLista()
-        lista.lisaa_viite(self.viite)
-
-        self.assertEqual(1, len(lista.viitteet))
-
-    def test_viitelista_palauttaa_viitteet_merkkijonona(self):
-        lista = ViiteLista()
-        lista.lisaa_viite(self.viite)
-
-        tulostus = lista.hae_viitelista()
-
-        self.assertEqual(str, type(tulostus[0]))
 
