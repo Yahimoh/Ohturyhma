@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-.pytest_cache
-__pycache__
+**/.pytest_cache
+**/__pycache__
 .coverage
-
-
 htmlcov
-
 .env
->>>>>>> 168d3b3 (postgres config)

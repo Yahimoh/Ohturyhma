@@ -1,21 +1,27 @@
+from os import getenv
 from flask import Flask
 from flask import redirect, render_template, request
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import text
+from src.database import lisaa_viite, db, lue_viitteet
+from src.viite import Viite
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql:///user"
-db = SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = getenv("DATABASE_URL")
+db.init_app(app)
 
 @app.route("/")
 def order():
-    return render_template("index.html")
+    return render_template("index.html", viitteet=lue_viitteet())
 
 @app.route("/send", methods=["POST"])
 def send():
-    kirjailija = request.form["kirjailija"]
-    otsikko = request.form["otsikko"]
-    vuosi = request.form["vuosi"]
-    kustantaja = request.form["kustantaja"]
+    viite = Viite({
+        "nimi": request.form["viite"],
+        "kirjailija": request.form["kirjailija"],
+        "otsikko": request.form["otsikko"],
+        "vuosi": int(request.form["vuosi"]),
+        "kustantaja": request.form["kustantaja"],
+    })
+
+    lisaa_viite(viite)
 
     return redirect("/")
