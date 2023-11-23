@@ -11,6 +11,9 @@ class Viite:
         """
         self.tiedot = tiedot
 
+    def random(self):
+        return
+
     def __str__(self) -> str:
         """Esittää viitteen tiedot bibtex-muodossa.
         Automaattisesti rakentaa oikeanlaisen muodon
@@ -30,7 +33,7 @@ class ViiteLista:
     """
     def __init__(self):
         self.viitteet = []
-    
+
     def lisaa_viite(self, viite: Viite):
         """Lisää viite viitelistaan.
         """
@@ -41,17 +44,4 @@ class ViiteLista:
         kirjaviitteet on esitetty 
         bibtex-muodossa merkkijonona.
         """
-        return [viite.__str__() for viite in self.viitteet]
-
-
-
-# esimerkki käytöstä
-if __name__ == "__main__":
-    viitteeni = ViiteLista()
-
-    tietoa = {"nimi": "joonajoona", "julkaisuvuosi": "2000", "lempiväri": "punainen"}
-
-    viitteeni.lisaa_viite(Viite(tiedot=tietoa))
-
-    for i in viitteeni.hae_viitelista():
-        print(i)
+        return True
