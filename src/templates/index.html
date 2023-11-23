@@ -22,7 +22,7 @@
 <hr>
 <h2>Lisätyt kirjaviitteet</h2>
     {% for viite in viitteet %}
-    <div class="viite">{{ viite }}</div>
+    <div class="viite">{{ viite | safe }}</div>
     <br>
     {% endfor %}
 </body>
