@@ -28,5 +28,3 @@ class Viite:
         viite += "}"
         return viite
     
-
-viite = Viite("Kirja", "minunnimi", {"kirjailija": "joona", "vuosi": "2000"})
