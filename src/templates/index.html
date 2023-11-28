@@ -6,7 +6,7 @@
 <body>
 <h1>Lähdeviitteet</h1>
 <h2>Lisää kirjaviite:</h2>
-<form action="/send" method="POST">
+<form action="/send_kirja" method="POST">
     <p>Viitteen nimi:
     <input type="text" name="viite"></p>
     <p>Kirjailija:
@@ -18,6 +18,26 @@
     <p>Kustantaja:
     <input type="text" name="kustantaja"></p>
     <input type="submit" value="Lisää">
+</form>
+<hr>
+<h2>Lisää artikkeliviite:</h2>
+<form action="/send_artikkeli" method="POST">
+    <p>Viitteen nimi:
+        <input type="text" name="viite"></p>
+    <p>Kirjailija:
+        <input type="text" name="kirjailija"></p>
+    <p>Otsikko:
+        <input type="text" name="otsikko"></p>
+    <p>Julkaisija:
+        <input type="text" name="julkaisija"></p>
+    <p>Vuosi:
+        <input type="number" name="vuosi"></p>
+    <p>Julkaisunumero:
+        <input type="text" name="julkaisunumero"></p>
+    <p>Sivut:
+        <input type="text" name="sivut"></p>
+        <input type="submit" value="Lisää">
+
 </form>
 <hr>
 <h2>Lisätyt kirjaviitteet</h2>
