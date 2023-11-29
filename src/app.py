@@ -10,7 +10,11 @@ db.init_app(app)
 
 @app.route("/")
 def order():
+<<<<<<< HEAD
     return render_template("index.html", viitteet=[(x.id, str(x)) for x in lue_viitteet()])
+=======
+    return render_template("index.html", viitteet=[[x.tiedot['id'], str(x)] for x in lue_viitteet()])
+>>>>>>> artikkeliviite
 
 @app.route("/send_kirja", methods=["POST"])
 def send_kirja():
