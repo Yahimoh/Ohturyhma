@@ -12,7 +12,7 @@ db.init_app(app)
 def order():
     return render_template("index.html", viitteet=[str(x) for x in lue_viitteet()])
 
-@app.route("/send", methods=["POST"])
+@app.route("/send_kirja", methods=["POST"])
 def send_kirja():
     viite = Viite({
         "viite": request.form["viite"],
@@ -26,6 +26,7 @@ def send_kirja():
 
     return redirect("/")
 
+@app.route("/send_artikkeli", methods=["POST"])
 def send_artikkeli():
     viite = Viite({
         "viite": request.form["viite"],
