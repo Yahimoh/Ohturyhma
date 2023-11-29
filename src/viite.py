@@ -2,7 +2,7 @@
 class Viite:
     """Luokka yhdelle viitteelle. 
     """
-    def __init__(self, viitetyyppi: str, nimi: str, tiedot: dict):
+    def __init__(self, tiedot: dict):
         """Alustuksen yhteydessä anna
         viittauksen tiedot.
         Viitteen tyyppi ja nimi tulee antaa argumenttina.
@@ -10,8 +10,6 @@ class Viite:
         Args:
             tiedot (dict): sanakirja muotoa {"nimi": "esimerkki"}
         """
-        self.viitetyyppi = viitetyyppi
-        self.nimi = nimi
         self.tiedot = tiedot
 
     def __str__(self) -> str:
@@ -19,7 +17,10 @@ class Viite:
         Automaattisesti rakentaa oikeanlaisen muodon
         sanakirjan perusteella.
         """
-        viite = "@" + self.viitetyyppi + "{" + self.nimi + ",\n"
+        nimi = self.tiedot["viite"]
+        viitetyyppi = self.tiedot["tyyppi"]
+        
+        viite = "@" + "viitetyyppi" + "{" + "nimi" + ",\n"
 
         for avain, arvo in self.tiedot.items():
             viite += f"{avain:12} = {{{arvo}}},\n"
@@ -27,4 +28,3 @@ class Viite:
         viite = viite[:-2] + viite[-1:]
         viite += "}"
         return viite
-    
