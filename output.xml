@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.12.0 on linux)" generated="20231129 10:18:43.209" rpa="false" schemaversion="4">
+<suite id="s1" name="Robot" source="/home/rellen/Ohturyhma/src/tests/robot">
+<suite id="s1-s1" name="Book" source="/home/rellen/Ohturyhma/src/tests/robot/book.robot">
+<kw name="Avaa Ja Konfiguroi Selain" library="resource" type="SETUP">
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20231129 10:18:43.310" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x7f0610321820&gt;</msg>
+<status status="PASS" starttime="20231129 10:18:43.309" endtime="20231129 10:18:43.310"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--no-sandbox</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20231129 10:18:43.310" endtime="20231129 10:18:43.310"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>browser=chrome</arg>
+<arg>options=${options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20231129 10:18:43.310" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<status status="PASS" starttime="20231129 10:18:43.310" endtime="20231129 10:18:44.132"/>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20231129 10:18:44.133" endtime="20231129 10:18:44.133"/>
+</kw>
+<status status="PASS" starttime="20231129 10:18:43.309" endtime="20231129 10:18:44.133"/>
+</kw>
+<test id="s1-s1-t1" name="Sivu On Auki" line="8">
+<kw name="Mene Sivustolle" library="resource" type="SETUP">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20231129 10:18:44.134" level="INFO">Opening url 'http://localhost:5000'</msg>
+<status status="PASS" starttime="20231129 10:18:44.134" endtime="20231129 10:18:44.693"/>
+</kw>
+<status status="PASS" starttime="20231129 10:18:44.134" endtime="20231129 10:18:44.693"/>
+</kw>
+<kw name="Sivuston Pitaisi Olla Auki" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Lähdeviitteet</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20231129 10:18:45.205" level="INFO">Page title is 'Lähdeviitteet'.</msg>
+<status status="PASS" starttime="20231129 10:18:44.694" endtime="20231129 10:18:45.205"/>
+</kw>
+<status status="PASS" starttime="20231129 10:18:44.693" endtime="20231129 10:18:45.205"/>
+</kw>
+<status status="PASS" starttime="20231129 10:18:44.133" endtime="20231129 10:18:45.206"/>
+</test>
+<test id="s1-s1-t2" name="Lisaa Kirjaviite" line="10">
+<kw name="Mene Sivustolle" library="resource" type="SETUP">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20231129 10:18:45.208" level="INFO">Opening url 'http://localhost:5000'</msg>
+<status status="PASS" starttime="20231129 10:18:45.207" endtime="20231129 10:18:45.732"/>
+</kw>
+<status status="PASS" starttime="20231129 10:18:45.207" endtime="20231129 10:18:45.732"/>
+</kw>
+<kw name="Sivuston Pitaisi Olla Auki" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Lähdeviitteet</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20231129 10:18:46.241" level="INFO">Page title is 'Lähdeviitteet'.</msg>
+<status status="PASS" starttime="20231129 10:18:45.733" endtime="20231129 10:18:46.241"/>
+</kw>
+<status status="PASS" starttime="20231129 10:18:45.732" endtime="20231129 10:18:46.242"/>
+</kw>
+<kw name="Aseta Viite">
+<arg>testiviite</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>viite</arg>
+<arg>${viite}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231129 10:18:46.244" level="INFO">Typing text 'testiviite' into text field 'viite'.</msg>
+<status status="PASS" starttime="20231129 10:18:46.243" endtime="20231129 10:18:47.861"/>
+</kw>
+<status status="PASS" starttime="20231129 10:18:46.242" endtime="20231129 10:18:47.861"/>
+</kw>
+<kw name="Aseta Kirjailija">
+<arg>testikirjailija</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>kirjailija</arg>
+<arg>${kirjailija}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231129 10:18:47.863" level="INFO">Typing text 'testikirjailija' into text field 'kirjailija'.</msg>
+<status status="PASS" starttime="20231129 10:18:47.862" endtime="20231129 10:18:49.446"/>
+</kw>
+<status status="PASS" starttime="20231129 10:18:47.862" endtime="20231129 10:18:49.446"/>
+</kw>
+<kw name="Aseta Otsikko">
+<arg>testiotsikko</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>otsikko</arg>
+<arg>${otsikko}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231129 10:18:49.448" level="INFO">Typing text 'testiotsikko' into text field 'otsikko'.</msg>
+<status status="PASS" starttime="20231129 10:18:49.447" endtime="20231129 10:18:51.019"/>
+</kw>
+<status status="PASS" starttime="20231129 10:18:49.446" endtime="20231129 10:18:51.019"/>
+</kw>
+<kw name="Aseta Vuosi">
+<arg>2023</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>vuosi</arg>
+<arg>${vuosi}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231129 10:18:51.021" level="INFO">Typing text '2023' into text field 'vuosi'.</msg>
+<status status="PASS" starttime="20231129 10:18:51.020" endtime="20231129 10:18:52.619"/>
+</kw>
+<status status="PASS" starttime="20231129 10:18:51.019" endtime="20231129 10:18:52.619"/>
+</kw>
+<kw name="Aseta Kustantaja">
+<arg>testikustantaja</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>kustantaja</arg>
+<arg>${kustantaja}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231129 10:18:52.621" level="INFO">Typing text 'testikustantaja' into text field 'kustantaja'.</msg>
+<status status="PASS" starttime="20231129 10:18:52.620" endtime="20231129 10:18:54.194"/>
+</kw>
+<status status="PASS" starttime="20231129 10:18:52.619" endtime="20231129 10:18:54.194"/>
+</kw>
+<kw name="Lisää Kirjan Tiedot">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Lisää</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20231129 10:18:54.196" level="INFO">Clicking button 'Lisää'.</msg>
+<status status="PASS" starttime="20231129 10:18:54.195" endtime="20231129 10:18:55.803"/>
+</kw>
+<status status="PASS" starttime="20231129 10:18:54.194" endtime="20231129 10:18:55.803"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>testiviite</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20231129 10:18:56.834" level="INFO">Current page contains text 'testiviite'.</msg>
+<status status="PASS" starttime="20231129 10:18:55.803" endtime="20231129 10:18:56.834"/>
+</kw>
+<status status="PASS" starttime="20231129 10:18:45.206" endtime="20231129 10:18:56.834"/>
+</test>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20231129 10:18:56.836" endtime="20231129 10:18:57.396"/>
+</kw>
+<status status="PASS" starttime="20231129 10:18:43.220" endtime="20231129 10:18:57.396"/>
+</suite>
+<status status="PASS" starttime="20231129 10:18:43.209" endtime="20231129 10:18:57.398"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Robot">Robot</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1" name="Book">Robot.Book</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
