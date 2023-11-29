@@ -40,9 +40,21 @@
 
 </form>
 <hr>
+<div>
 <h2>Lisätyt kirjaviitteet</h2>
+<form action="/poista_viitteet" method="POST">
+    <input type="submit" value="poista kaikki viitteet">
+</form>
+<br>
+</div>
     {% for viite in viitteet %}
+    <div style="display: flex;">
     <div class="viite">{{ viite | safe }}</div>
+    <!-- tähän lisättävä jotain, minkä perusteella poistava route tunnistaa viitteen -->
+    <form action="/poista/{}" method="POST">
+        <input type="submit" value="poista">
+    </form>
+    </div>
     <br>
     {% endfor %}
 </body>
