@@ -1,7 +1,7 @@
 from os import getenv
 from flask import Flask
 from flask import redirect, render_template, request
-from src.database import lisaa_viite, db, lue_viitteet
+from src.database import lisaa_viite, db, lue_viitteet, poista_kaikki_viitteet, poista_viite
 from src.viite import Viite
 
 app = Flask(__name__)
@@ -41,3 +41,13 @@ def send_artikkeli():
     lisaa_viite(viite)
 
     return redirect("/")
+
+@app.route('/poista_viitteet', methods=['POST'])
+def poista_viitteet():
+    poista_kaikki_viitteet()
+    return redirect('/')
+
+@app.route('/poista/<int:id>', methods=['POST'])
+def poista(id):
+    poista_viite(id)
+    return redirect('/')

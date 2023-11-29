@@ -34,7 +34,7 @@ def lue_viitteet():
     vastaus = db.session.execute(sql)
     return [Viite(x) for x in vastaus.mappings().all()]
 
-def poista_viite(viite: Viite):
+def poista_viite(id):
     sql = text("""
             DELETE FROM
                 Viitteet
@@ -42,7 +42,7 @@ def poista_viite(viite: Viite):
                 id = :id;
             """)
 
-    db.session.execute(sql, {"id": viite.tiedot["id"]})
+    db.session.execute(sql, {"id": id})
     db.session.commit()
 
 def poista_kaikki_viitteet():

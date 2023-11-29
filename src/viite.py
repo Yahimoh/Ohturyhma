@@ -11,7 +11,7 @@ class Viite:
             tiedot (dict): sanakirja muotoa {"nimi": "esimerkki"}
         """
         self.tiedot = tiedot
-        self.id = self.tiedot.get("id", None)
+        #self.id = self.tiedot.get("id", None)
 
     def __str__(self) -> str:
         """Esittää viitteen tiedot bibtex-muodossa.
