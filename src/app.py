@@ -13,13 +13,28 @@ def order():
     return render_template("index.html", viitteet=[str(x) for x in lue_viitteet()])
 
 @app.route("/send", methods=["POST"])
-def send():
+def send_kirja():
     viite = Viite({
         "viite": request.form["viite"],
         "kirjailija": request.form["kirjailija"],
         "otsikko": request.form["otsikko"],
         "vuosi": int(request.form["vuosi"]),
         "kustantaja": request.form["kustantaja"],
+    })
+
+    lisaa_viite(viite)
+
+    return redirect("/")
+
+def send_artikkeli():
+    viite = Viite({
+        "viite": request.form["viite"],
+        "kirjailija": request.form["kirjailija"],
+        "otsikko": request.form["otsikko"],
+        "vuosi": int(request.form["vuosi"]),        
+        "julkaisunumero": (request.form["julkaisunumero"]),
+        "kustantaja": (request.form["kustantaja"]),
+        "sivut": (request.form["sivut"])
     })
 
     lisaa_viite(viite)
