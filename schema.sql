@@ -1,2 +1,14 @@
 DROP TABLE IF EXISTS KirjaViitteet;
-CREATE TABLE KirjaViitteet (id SERIAL PRIMARY KEY, viite TEXT, vuosi INTEGER, kirjailija TEXT, otsikko TEXT, kustantaja TEXT, versio INTEGER);
+DROP TABLE IF EXISTS Viitteet;
+CREATE TABLE Viitteet (
+    id SERIAL PRIMARY KEY,
+    viite TEXT,
+    tyyppi TEXT,
+    vuosi INTEGER,
+    kirjailija TEXT,
+    otsikko TEXT,
+    kustantaja TEXT,
+    versio INTEGER,
+    julkaisunumero TEXT,
+    sivut TEXT
+);
