@@ -2,26 +2,60 @@
 <html>
 <head>
     <title>Lähdeviitteet</title>
+    <style>
+        .hidden { display: none; }
+        .active-button { background-color: #0398fc; color: white; }
+    </style>
+    <script>
+    function toggleForm(formName) {
+        var kirjaForm = document.getElementById('kirjaForm');
+        var artikkeliForm = document.getElementById('artikkeliForm');
+        var kirjaButton = document.getElementById('kirjaButton');
+        var artikkeliButton = document.getElementById('artikkeliButton');
+        var kirjaHeading = document.getElementById('kirjaHeading');
+        var artikkeliHeading = document.getElementById('artikkeliHeading');
+
+        if (formName === 'kirja') {
+            kirjaForm.classList.remove('hidden');
+            kirjaButton.classList.add('active-button');
+            kirjaHeading.classList.remove('hidden');
+            artikkeliForm.classList.add('hidden');
+            artikkeliButton.classList.remove('active-button');
+            artikkeliHeading.classList.add('hidden');
+        } else if (formName === 'artikkeli') {
+            kirjaForm.classList.add('hidden');
+            kirjaButton.classList.remove('active-button');
+            kirjaHeading.classList.add('hidden');
+            artikkeliForm.classList.remove('hidden');
+            artikkeliButton.classList.add('active-button');
+            artikkeliHeading.classList.remove('hidden');
+        }
+}
+    </script>
 </head>
 <body>
 <h1>Lähdeviitteet</h1>
-<h2>Lisää kirjaviite:</h2>
-<form action="/send_kirja" method="POST">
+
+<button id="kirjaButton" class="active-button" onclick="toggleForm('kirja')">Kirjaviite</button>
+<button id="artikkeliButton" onclick="toggleForm('artikkeli')">Artikkeliviite</button>
+
+<h2><span id="kirjaHeading">Lisää kirjaviite:</span></h2>
+<form id="kirjaForm" action="/send_kirja" method="POST">
     <p>Viitteen nimi:
-    <input type="text" name="viite"></p>
-    <p>Kirjailija:
-    <input type="text" name="kirjailija"></p>
-    <p>Otsikko:
-    <input type="text" name="otsikko"></p>
-    <p>Vuosi:
-    <input type="number" name="vuosi"></p>
-    <p>Kustantaja:
-    <input type="text" name="kustantaja"></p>
-    <input type="submit" value="Lisää">
+        <input type="text" name="viite"></p>
+        <p>Kirjailija:
+        <input type="text" name="kirjailija"></p>
+        <p>Otsikko:
+        <input type="text" name="otsikko"></p>
+        <p>Vuosi:
+        <input type="number" name="vuosi"></p>
+        <p>Kustantaja:
+        <input type="text" name="kustantaja"></p>
+        <input type="submit" value="Lisää">
 </form>
-<hr>
-<h2>Lisää artikkeliviite:</h2>
-<form action="/send_artikkeli" method="POST">
+
+<h2><span id="artikkeliHeading" class="hidden">Lisää artikkeliviite:</span></h2>
+<form id="artikkeliForm" class="hidden" action="/send_artikkeli" method="POST">
     <p>Viitteen nimi:
         <input type="text" name="viite"></p>
     <p>Kirjailija:
@@ -37,13 +71,13 @@
     <p>Sivut:
         <input type="text" name="sivut"></p>
         <input type="submit" value="Lisää">
-
 </form>
+
 <hr>
 <h2>Lisätyt kirjaviitteet</h2>
     {% for viite in viitteet %}
     <div class="viite">{{ viite | safe }}</div>
     <br>
-    {% endfor %}
+{% endfor %}
 </body>
 </html>
