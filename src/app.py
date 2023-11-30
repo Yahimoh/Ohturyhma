@@ -16,6 +16,7 @@ def order():
 @app.route("/send_kirja", methods=["POST"])
 def send_kirja():
     viite = Viite({
+        "tyyppi": "book",
         "viite": request.form["viite"],
         "kirjailija": request.form["kirjailija"],
         "otsikko": request.form["otsikko"],
@@ -30,6 +31,7 @@ def send_kirja():
 @app.route("/send_artikkeli", methods=["POST"])
 def send_artikkeli():
     viite = Viite({
+        "tyyppi": "article",
         "viite": request.form["viite"],
         "kirjailija": request.form["kirjailija"],
         "otsikko": request.form["otsikko"],
