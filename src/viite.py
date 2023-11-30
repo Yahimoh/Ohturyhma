@@ -20,7 +20,7 @@ class Viite:
         """
         #nimi = self.tiedot["viite"]
         #viitetyyppi = self.tiedot["tyyppi"]
-        
+
         viite = "@" + "nimi" + "{" + "nimi" + ",<br>"
 
         for avain, arvo in self.tiedot.items():

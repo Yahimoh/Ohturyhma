@@ -22,11 +22,11 @@ def lisaa_viite(viite: Viite):
         d[lisattava] = viite.tiedot.get(lisattava, None)
 
     vastaus = db.session.execute(sql, d)
-    id = vastaus.fetchone()[0]
+    viite_id = vastaus.fetchone()[0]
     db.session.commit()
 
     uusi_viite = copy.deepcopy(viite)
-    uusi_viite.tiedot["id"] = id
+    uusi_viite.tiedot["id"] = viite_id
     return uusi_viite
 
 def lue_viitteet():
@@ -34,7 +34,7 @@ def lue_viitteet():
     vastaus = db.session.execute(sql)
     return [Viite(x) for x in vastaus.mappings().all()]
 
-def poista_viite(id):
+def poista_viite(viite_id):
     sql = text("""
             DELETE FROM
                 Viitteet
@@ -42,7 +42,7 @@ def poista_viite(id):
                 id = :id;
             """)
 
-    db.session.execute(sql, {"id": id})
+    db.session.execute(sql, {"id": viite_id})
     db.session.commit()
 
 def poista_kaikki_viitteet():
