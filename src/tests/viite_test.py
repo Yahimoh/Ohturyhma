@@ -6,12 +6,11 @@ class ViiteTest(unittest.TestCase):
         pass
 
     def test_viite_ilmaistaan_merkkijonona(self):
-        data = {"viite": "vastaus", "otsikko": "vastaus2", "kirjailija": "joku", "vuosi": 123, "kustantaja": "jokin"}
+        data = {"viite": "blabla", "tyyppi": "book", "otsikko": "vastaus2", "kirjailija": "joku", "vuosi": 123, "kustantaja": "jokin"}
         viite = Viite(data)
         self.assertEqual(str, type(viite.__str__()))
 
     def test_viitteella_tieto_sanakirjana(self):
-        data = {"viite": "vastaus", "otsikko": "vastaus2", "kirjailija": "joku", "vuosi": 123, "kustantaja": "jokin"}
+        data = {"viite": "blabla", "tyyppi": "article", "otsikko": "vastaus2", "kirjailija": "joku", "vuosi": 123, "kustantaja": "jokin"}
         viite = Viite(data)
         self.assertEqual(dict, type(viite.tiedot))
-

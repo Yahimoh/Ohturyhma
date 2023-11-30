@@ -2,7 +2,7 @@ from os import getenv
 from flask import Flask
 from flask import redirect, render_template, request
 from src.database import lisaa_viite, db, lue_viitteet, poista_kaikki_viitteet, poista_viite
-from src.viite import Viite
+from src.viite import Viite, maarita_nimi
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = getenv("DATABASE_URL")
@@ -17,11 +17,11 @@ def order():
 def send_kirja():
     viite = Viite({
         "tyyppi": "book",
-        "viite": request.form["viite"],
         "kirjailija": request.form["kirjailija"],
         "otsikko": request.form["otsikko"],
         "vuosi": int(request.form["vuosi"]),
         "kustantaja": request.form["kustantaja"],
+        "viite": maarita_nimi(request.form["kirjailija"], request.form["vuosi"])
     })
 
     lisaa_viite(viite)
@@ -32,13 +32,13 @@ def send_kirja():
 def send_artikkeli():
     viite = Viite({
         "tyyppi": "article",
-        "viite": request.form["viite"],
         "kirjailija": request.form["kirjailija"],
         "otsikko": request.form["otsikko"],
         "vuosi": int(request.form["vuosi"]),        
         "julkaisunumero": (request.form["julkaisunumero"]),
         "kustantaja": (request.form["kustantaja"]),
-        "sivut": (request.form["sivut"])
+        "sivut": (request.form["sivut"]),
+        "viite": maarita_nimi(request.form["kirjailija"], request.form["vuosi"])
     })
 
     lisaa_viite(viite)
@@ -54,3 +54,4 @@ def poista_viitteet():
 def poista(viite_id):
     poista_viite(viite_id)
     return redirect('/')
+    

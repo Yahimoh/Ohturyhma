@@ -11,7 +11,7 @@ class Viite:
             tiedot (dict): sanakirja muotoa {"nimi": "esimerkki"}
         """
         self.tiedot = tiedot
-        #self.id = self.tiedot.get("id", None)
+
 
     def __str__(self) -> str:
         """Esittää viitteen tiedot bibtex-muodossa.
@@ -28,3 +28,14 @@ class Viite:
 
         viite += "}\n"
         return viite
+
+def maarita_nimi(kirjailija, vuosi):
+    kirjailija_string = kirjailija.replace(" and ", ", ")
+    kirjailija_string = kirjailija_string.replace(" ja ", ", ")
+    
+    kirjailijat = [name.split()[-1] for name in kirjailija_string.split(", ")]
+    
+    identifier = ''.join([author[0] for author in kirjailijat])
+    identifier += str(vuosi)[-2:]
+            
+    return identifier
