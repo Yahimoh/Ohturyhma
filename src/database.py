@@ -34,6 +34,11 @@ def lue_viitteet():
     vastaus = db.session.execute(sql)
     return [Viite(x) for x in vastaus.mappings().all()]
 
+def etsi_viite(viite_id: int):
+    sql = text("SELECT * FROM Viitteet WHERE id = :id;")
+    vastaus = db.session.execute(sql, {"id": viite_id})
+    return Viite(vastaus.mappings().all()[0])
+
 def poista_viite(viite_id):
     sql = text("""
             DELETE FROM
