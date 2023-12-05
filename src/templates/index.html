@@ -53,15 +53,9 @@
 </form>
 <br>
 </div>
+    {% from 'viite.html' import luo_viite %}
     {% for viite in viitteet %}
-    <div style="display: flex;">
-        <div class="viite" style="white-space: pre-wrap;">{{ viite[1] }}</div>
-        <!-- tähän lisättävä jotain, minkä perusteella poistava route tunnistaa viitteen -->
-        <form action="/poista/{{viite[0]}}" method="POST">
-            <input type="submit" value="poista">
-        </form>
-    </div>
-    <br>
-{% endfor %}
+        {{ luo_viite(viite) }}
+    {% endfor %}
 </body>
 </html>
