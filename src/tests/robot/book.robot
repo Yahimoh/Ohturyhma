@@ -9,13 +9,17 @@ Sivu On Auki
     Sivuston Pitäisi Olla Auki
 Lisaa Kirjaviite
     Sivuston Pitäisi Olla Auki
-    Aseta Viite  testiviite
     Aseta Kirjailija  testikirjailija
     Aseta Otsikko  testiotsikko
     Aseta Vuosi  2023
     Aseta Kustantaja  testikustantaja
     Lisää Kirjan Tiedot
-    Page Should Contain  testiviite
+    Page Should Contain  testikirjailija
+
+Viitteen voi nähdä nappia painamalla bibtex muodossa
+    Sivuston Pitäisi Olla Auki
+    Näytä Bibtex Nappia Painetaan
+    BibTex Muoto Näkyy
 
 *** Keywords ***
 Aseta Viite
@@ -41,5 +45,9 @@ Aseta Kustantaja
 Lisää Kirjan Tiedot
     Click Button  Lisää
 
+Näytä Bibtex Nappia Painetaan
+    Click button  Näytä BibTex
 
+BibTex Muoto Näkyy
+    Page Should Contain  Piilota BibTex
 
