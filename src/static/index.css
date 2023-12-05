@@ -3,11 +3,14 @@ body {
 }
 
 .viite_base {
-    padding: 5px;
     margin: 0px 20px 0px 20px;
+    width: 75%;
+}
+
+.viite_lista {
+    padding: 5px;
     display: flex;
     background-color: bisque;
-    width: 75%;
 }
 
 .palanen {
@@ -23,5 +26,7 @@ body {
 }
 
 .bibtex-wrapperi {
+    margin-top: 5px;
     white-space: pre-wrap;
+    display: none;
 }

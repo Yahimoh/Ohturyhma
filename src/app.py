@@ -11,7 +11,7 @@ db.init_app(app)
 @app.route("/")
 def order():
     return render_template("index.html",
-                viitteet=lue_viitteet())
+                viitteet=[(x, str(x)) for x in lue_viitteet()])
 
 @app.route("/send_kirja", methods=["POST"])
 def send_kirja():
@@ -54,4 +54,3 @@ def poista_viitteet():
 def poista(viite_id):
     poista_viite(viite_id)
     return redirect('/')
-    

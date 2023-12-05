@@ -10,10 +10,12 @@ function toggle_bibtex(viite_id) {
 
 function näytä_bibtex(viite_id, bibtex_div, nappi) {
     nappi.textContent = "Piilota BibTex";
+    bibtex_div.style.display = "block";
 }
 
 function piilota_bibtex(viite_id, bibtex_div, nappi) {
     nappi.textContent = "Näytä BibTex";
+    bibtex_div.style.display = "none";
 }
 
 function toggleForm(formName) {
