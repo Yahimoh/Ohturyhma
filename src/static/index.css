@@ -1,3 +1,27 @@
 body {
     background-color: antiquewhite;
 }
+
+.viite_base {
+    padding: 5px;
+    margin: 0px 20px 0px 20px;
+    display: flex;
+    background-color: bisque;
+    width: 75%;
+}
+
+.palanen {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.napit {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-left: auto;
+}
+
+.bibtex-wrapperi {
+    white-space: pre-wrap;
+}

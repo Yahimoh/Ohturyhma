@@ -1,3 +1,21 @@
+function toggle_bibtex(viite_id) {
+    let bibtex_div = document.getElementById('wrapperi_' + viite_id);
+    let nappi = document.getElementById('bibtex_nappi_' + viite_id);
+    if(nappi.textContent == "Näytä BibTex") {
+        näytä_bibtex(viite_id, bibtex_div, nappi);
+    } else {
+        piilota_bibtex(viite_id, bibtex_div, nappi);
+    }
+}
+
+function näytä_bibtex(viite_id, bibtex_div, nappi) {
+    nappi.textContent = "Piilota BibTex";
+}
+
+function piilota_bibtex(viite_id, bibtex_div, nappi) {
+    nappi.textContent = "Näytä BibTex";
+}
+
 function toggleForm(formName) {
     var kirjaForm = document.getElementById('kirjaForm');
     var artikkeliForm = document.getElementById('artikkeliForm');

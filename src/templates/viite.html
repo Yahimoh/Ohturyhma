@@ -1,10 +1,22 @@
+{% macro _palanen(viite, tyyppi) %}
+    <span class="{{ tyyppi }} palanen">{{ viite.tiedot[tyyppi] }}</span>
+{% endmacro %}
+
 {% macro luo_viite(viite) %}
-    <div style="display: flex;">
-        <div class="viite" style="white-space: pre-wrap;">{{ viite[1] }}</div>
-        <!-- tähän lisättävä jotain, minkä perusteella poistava route tunnistaa viitteen -->
-        <form action="/poista/{{viite[0]}}" method="POST">
-            <input type="submit" value="poista">
-        </form>
+    <div class="viite_base" id="viite_{{ viite.tiedot['id'] }}">
+        {{ _palanen(viite, "viite") }}
+        {{ _palanen(viite, "tyyppi") }}
+        {{ _palanen(viite, "otsikko") }}
+        {{ _palanen(viite, "vuosi") }}
+        {{ _palanen(viite, "kirjailija") }}
+        {{ _palanen(viite, "kutstantaja") }}
+        <div class="napit palanen">
+            <form action="/poista/{{viite.tiedot['id']}}" method="POST">
+                <input type="submit" value="poista">
+            </form>
+            <button type="button" onclick="toggle_bibtex({{ viite.tiedot['id'] }})" id="bibtex_nappi_{{ viite.tiedot['id'] }}">Näytä BibTex</button>
+        </div>
     </div>
+    <div class="bibtex-wrapperi" id="wrapperi_{{ viite.tiedot['id'] }}"></div>
     <br>
 {% endmacro %}

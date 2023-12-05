@@ -11,7 +11,7 @@ db.init_app(app)
 @app.route("/")
 def order():
     return render_template("index.html",
-                viitteet=[[x.tiedot['id'], str(x)] for x in lue_viitteet()])
+                viitteet=lue_viitteet())
 
 @app.route("/send_kirja", methods=["POST"])
 def send_kirja():
