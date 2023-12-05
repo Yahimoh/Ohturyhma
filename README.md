@@ -7,8 +7,8 @@
 
 
 ### Definition of done
-- Ominaisuus on toteutettu ja testattu
-- Se voidaan halutessa laittaa tuotantoon
+- Ominaisuus on toteutettu ja tarpeeksi testattu
+- Ohjelma voidaan halutessa laittaa tuotantoon
 - Koodi on katselmoitu
 
 ### Asennusohjeet
