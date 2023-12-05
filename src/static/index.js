@@ -53,3 +53,48 @@ function toggleForm(formName) {
         artikkeliHeading.classList.remove('hidden');
     }
 }
+
+function toggleShown(formName) {
+    var kaikkiKirjatButton = document.getElementById('kaikkiKirjaViitteetButton');
+    var kaikkiArtikkeliViitteetButton = document.getElementById('kaikkiArtikkeliViitteetButton');
+    var kaikkiViitteetButton = document.getElementById('kaikkiViitteetButton');
+    var kaikkiContainer = document.getElementById('kaikkiViitteetContainer');
+    var kirjatContainer = document.getElementById('kirjaViitteetContainer');
+    var artikkeliContainer = document.getElementById('artikkeliViitteetContainer');
+    var poistaKaikkiTeksti = document.getElementById('poistaKaikkiTeksti');
+    var poistaKirjatTeksti = document.getElementById('poistaKirjatTeksti');
+    var poistaArtikkelitTeksti = document.getElementById('poistaArtikkelitTeksti');
+
+    if (formName === 'kirja') {
+        kaikkiKirjatButton.classList.add('active-button');
+        kaikkiArtikkeliViitteetButton.classList.remove('active-button');
+        kaikkiViitteetButton.classList.remove('active-button');
+        kaikkiContainer.classList.add('hidden');
+        kirjatContainer.classList.remove('hidden');
+        artikkeliContainer.classList.add('hidden');
+        poistaKaikkiTeksti.classList.add('hidden');
+        poistaKirjatTeksti.classList.remove('hidden');
+        poistaArtikkelitTeksti.classList.add('hidden');
+    } else if (formName === 'artikkeli') {
+        kaikkiKirjatButton.classList.remove('active-button');
+        kaikkiArtikkeliViitteetButton.classList.add('active-button');
+        kaikkiViitteetButton.classList.remove('active-button');
+        kaikkiContainer.classList.add('hidden');
+        kirjatContainer.classList.add('hidden');
+        artikkeliContainer.classList.remove('hidden');
+        poistaKaikkiTeksti.classList.add('hidden');
+        poistaKirjatTeksti.classList.add('hidden');
+        poistaArtikkelitTeksti.classList.remove('hidden');
+    } else if (formName === 'kaikki') {
+        kaikkiKirjatButton.classList.remove('active-button');
+        kaikkiArtikkeliViitteetButton.classList.remove('active-button');
+        kaikkiViitteetButton.classList.add('active-button');
+        kaikkiContainer.classList.remove('hidden');
+        kirjatContainer.classList.add('hidden');
+        artikkeliContainer.classList.add('hidden');
+        poistaKaikkiTeksti.classList.remove('hidden');
+        poistaKirjatTeksti.classList.add('hidden');
+        poistaArtikkelitTeksti.classList.add('hidden');
+    }
+}
+

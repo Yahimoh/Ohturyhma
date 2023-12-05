@@ -50,6 +50,17 @@ def poista_viite(viite_id):
     db.session.execute(sql, {"id": viite_id})
     db.session.commit()
 
+def poista_viite_tyyppi(tyyppi):
+    sql = text("""
+            DELETE FROM
+                Viitteet
+            WHERE
+                tyyppi = :tyyppi;
+            """)
+
+    db.session.execute(sql, {"tyyppi": tyyppi})
+    db.session.commit()
+
 def poista_kaikki_viitteet():
     sql = text("TRUNCATE Viitteet CASCADE;")
     db.session.execute(sql)

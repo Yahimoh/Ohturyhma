@@ -16,6 +16,7 @@
 <button id="artikkeliButton" onclick="toggleForm('artikkeli')">Artikkeliviite</button>
 <button id="kaikkiButton" onclick="toggleForm('kaikki')">Kaikki viitteet</button>
 
+<br>
 <h2><span id="kirjaHeading">Lisää kirjaviite:</span></h2>
 <form id="kirjaForm" action="/send_kirja" method="POST">
     <p>Kirjailija:
@@ -48,15 +49,51 @@
 
 <hr>
 <div>
-<h2>Kaikki lisätyt viitteet</h2>
-<form action="/poista_viitteet" method="POST">
-    <input type="submit" value="poista kaikki viitteet">
+
+<h2><span id="kaikkiViitteet" class="hidden">Kaikki lisätyt viitteet</h2>
+<h2><span id="kirjaViitteet" class="hidden">Kaikki lisätyt kirjaviitteet</h2>
+<h2><span id="artikkeliViitteet" class="hidden">Kaikki lisätyt artikkeliviitteet</h2>
+
+<button id="kaikkiViitteetButton" class="active-button" onclick="toggleShown('kaikki')">Kaikki viitteet</button>
+<button id="kaikkiArtikkeliViitteetButton" onclick="toggleShown('artikkeli')">Kaikki artikkeliviittet</button>
+<button id="kaikkiKirjaViitteetButton" onclick="toggleShown('kirja')">Kaikki kirjaviitteet</button><br>
+
+<br>
+<form id="poistaKaikkiTeksti" action="/poista_viitteet" method="POST">
+    <input type="submit" value="Poista kaikki viitteet">
+</form>
+<form id="poistaKirjatTeksti" class="hidden" action="/poista_kirja_viitteet" method="POST" >
+    <input type="submit" value="Poista kaikki kirjaviitteet">
+</form>
+<form id="poistaArtikkelitTeksti" class="hidden" action="/poista_artikkeli_viitteet" method="POST" >
+    <input type="submit" value="Poista kaikki artikkeliviitteet">
 </form>
 <br>
 </div>
+<div id="kaikkiViitteetContainer">
     {% from 'viite.html' import luo_viite %}
     {% for viite in viitteet %}
         {{ luo_viite(viite) }}
     {% endfor %}
+</div>
+
+<div id="kirjaViitteetContainer" class="hidden">
+    {% from 'viite.html' import luo_viite %}
+    {% for viite in viitteet %}
+        {% if viite[0].get_type() == "book" %}
+            {{ luo_viite(viite) }}
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div id="artikkeliViitteetContainer" class="hidden">
+    {% from 'viite.html' import luo_viite %}
+    {% for viite in viitteet %}
+        {% if viite[0].get_type() == "article" %}
+            {{ luo_viite(viite) }}
+        {% endif %}
+    {% endfor %}
+</div>
+
 </body>
 </html>

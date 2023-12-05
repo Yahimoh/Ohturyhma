@@ -6,12 +6,10 @@
     {% set viite = viite_tuple[0] %}
     <div class="viite_base" id="viite_{{ viite.tiedot['id'] }}">
         <div class="viite_lista">
-            {{ _palanen(viite, "viite") }}
-            {{ _palanen(viite, "tyyppi") }}
             {{ _palanen(viite, "otsikko") }}
             {{ _palanen(viite, "vuosi") }}
             {{ _palanen(viite, "kirjailija") }}
-            {{ _palanen(viite, "kutstantaja") }}
+            {{ _palanen(viite, "kustantaja") }}
             <div class="napit palanen">
                 <form action="/poista/{{viite.tiedot['id']}}" method="POST">
                     <input type="submit" value="poista">
