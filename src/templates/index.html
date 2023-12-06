@@ -7,6 +7,13 @@
         .active-button { background-color: #0398fc; color: white; }
     </style>
     <script>
+    function kopioiTeksti(viite_id){
+        var tekstikentta = document.getElementById(viite_id);
+        tekstikentta.select();
+        tekstikentta.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(tekstikentta.value);
+    }
+
     function toggleForm(formName) {
         var kirjaForm = document.getElementById('kirjaForm');
         var artikkeliForm = document.getElementById('artikkeliForm');
@@ -96,6 +103,7 @@
         <form action="/poista/{{viite[0]}}" method="POST">
             <input type="submit" value="poista">
         </form>
+        <button id="kopioiButton" onclick="kopioiTeksti(viite[1])">Kopioi leikepöydälle</button>
     </div>
     <br>
 {% endfor %}
