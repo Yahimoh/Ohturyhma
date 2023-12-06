@@ -10,6 +10,7 @@ lisattavat = [
 ]
 
 def lisaa_viite(viite: Viite):
+    viite = tarkasta_viiteavain_unique(viite)
     sql = text("""
             INSERT INTO
                 Viitteet (viite, tyyppi, kirjailija, otsikko, vuosi, kustantaja, julkaisunumero, sivut)
@@ -65,3 +66,26 @@ def poista_kaikki_viitteet():
     sql = text("TRUNCATE Viitteet CASCADE;")
     db.session.execute(sql)
     db.session.commit()
+
+def tarkasta_viiteavain_unique(viite: Viite):
+    alkuperainen_viite = viite.tiedot.get("viite", "")
+    uusi_viite = alkuperainen_viite
+    aakkoset = "abcdefghijklmnopqrstuvwxyz"
+    kirjain_index = 0
+
+    while True:
+        sql = text("SELECT COUNT(*) FROM Viitteet WHERE viite = :viite;")
+        result = db.session.execute(sql, {"viite": uusi_viite}).scalar()
+
+        if result == 0:            
+            break
+        else:            
+            if kirjain_index < len(aakkoset):
+                uusi_viite = alkuperainen_viite + aakkoset[kirjain_index]
+                kirjain_index += 1
+            else:                
+                uusi_viite = alkuperainen_viite + aakkoset[kirjain_index // len(aakkoset) - 1] + aakkoset[kirjain_index % len(aakkoset)]
+                kirjain_index += 1
+
+    viite.tiedot["viite"] = uusi_viite
+    return viite
