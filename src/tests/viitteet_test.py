@@ -1,16 +1,11 @@
 import unittest
-from sqlalchemy.sql import text
-from src.initialize_database import initialize_database
-from src.database import db, lisaa_viite, poista_viite, poista_kaikki_viitteet, lue_viitteet
+import src.initialize_database
 from src.viite import Viite, maarita_nimi
-
-def pytest_configure():
-    initialize_database()
+import src.database as data
 
 class TestApp(unittest.TestCase):
     def setUp(self):
-        sql = text('TRUNCATE TABLE Viitteet')
-        db.session.execute(sql)
+        data.poista_kaikki_viitteet()
 
     def test_lisaa_kirja(self):
         viite = Viite({
@@ -21,7 +16,7 @@ class TestApp(unittest.TestCase):
             "kustantaja": "kustantaja",
             "viite": maarita_nimi("kirjailija", "vuosi")
         })
-        kirja = lisaa_viite(viite)
+        kirja = data.lisaa_viite(viite)
         self.assertTrue(kirja)
         
     def test_lisaa_artikkeli(self):
@@ -35,7 +30,7 @@ class TestApp(unittest.TestCase):
             "sivut": 10,
             "viite": maarita_nimi("kirjailija", "vuosi")
         })
-        artikkeli = lisaa_viite(viite)
+        artikkeli = data.lisaa_viite(viite)
         self.assertTrue(artikkeli)
         
     def test_poista_viitteet(self):
@@ -47,7 +42,7 @@ class TestApp(unittest.TestCase):
             "kustantaja": "testikustantaja",
             "viite": maarita_nimi("kirjailija", "vuosi")
         })
-        lisaa_viite(kirjaviite)
+        data.lisaa_viite(kirjaviite)
         artikkeliviite = Viite({
             "tyyppi": "article",
             "kirjailija": 'kirjailija',
@@ -58,9 +53,9 @@ class TestApp(unittest.TestCase):
             "sivut": 10,
             "viite": maarita_nimi("kirjailija", "vuosi")
         })
-        lisaa_viite(artikkeliviite)
-        poista_kaikki_viitteet()
-        viitteet = lue_viitteet()
+        data.lisaa_viite(artikkeliviite)
+        data.poista_kaikki_viitteet()
+        viitteet = data.lue_viitteet()
         self.assertEqual(viitteet, [])
         
     def test_poista_viite(self):
@@ -72,8 +67,8 @@ class TestApp(unittest.TestCase):
             "kustantaja": "testikustantaja",
             "viite": maarita_nimi("kirjailija", "vuosi")
         })
-        lisaa_viite(kirjaviite)
-        viitteet = lue_viitteet()
-        poista_viite(viitteet[0].tiedot['id'])
-        viitteet_nyt = lue_viitteet()
+        data.lisaa_viite(kirjaviite)
+        viitteet = data.lue_viitteet()
+        data.poista_viite(viitteet[0].tiedot['id'])
+        viitteet_nyt = data.lue_viitteet()
         self.assertEqual(viitteet_nyt, [])

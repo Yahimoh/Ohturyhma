@@ -1,11 +1,11 @@
-from os import getenv
 from flask import Flask
 from flask import redirect, render_template, request
 from src.database import lisaa_viite, db, lue_viitteet, poista_kaikki_viitteet, poista_viite
 from src.viite import Viite, maarita_nimi
+from src.config import DATABASE_URL
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = getenv("DATABASE_URL")
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 db.init_app(app)
 
 @app.route("/")

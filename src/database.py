@@ -1,9 +1,7 @@
 import copy
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import text
 from src.viite import Viite
-
-db = SQLAlchemy()
+from src.db import db
 
 lisattavat = [
     "viite", "tyyppi", "kirjailija", "otsikko", "vuosi", "kustantaja", "julkaisunumero", "sivut"
