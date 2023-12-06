@@ -54,11 +54,14 @@
 <h2><span id="kirjaViitteet" class="hidden">Kaikki lisätyt kirjaviitteet</h2>
 <h2><span id="artikkeliViitteet" class="hidden">Kaikki lisätyt artikkeliviitteet</h2>
 
+
 <h2>Näytä</h2>
 
 <button id="kaikkiViitteetButton" class="active-button" onclick="toggleShown('kaikki')">Kaikki viitteet</button>
 <button id="kaikkiArtikkeliViitteetButton" onclick="toggleShown('artikkeli')">Artikkeliviitteet</button>
 <button id="kaikkiKirjaViitteetButton" onclick="toggleShown('kirja')">Kirjaviitteet</button><br>
+
+<button onclick="kopioiKaikkiViitteet()">Kopioi kaikki viitteet leikepöydälle</button>
 
 <br>
 <form id="poistaKaikkiTeksti" action="/poista_viitteet" method="POST">
@@ -72,15 +75,14 @@
 </form>
 <br>
 </div>
+{% from 'viite.html' import luo_viite %}
 <div id="kaikkiViitteetContainer">
-    {% from 'viite.html' import luo_viite %}
     {% for viite in viitteet %}
         {{ luo_viite(viite) }}
     {% endfor %}
 </div>
 
 <div id="kirjaViitteetContainer" class="hidden">
-    {% from 'viite.html' import luo_viite %}
     {% for viite in viitteet %}
         {% if viite[0].get_type() == "book" %}
             {{ luo_viite(viite) }}
@@ -89,7 +91,6 @@
 </div>
 
 <div id="artikkeliViitteetContainer" class="hidden">
-    {% from 'viite.html' import luo_viite %}
     {% for viite in viitteet %}
         {% if viite[0].get_type() == "article" %}
             {{ luo_viite(viite) }}

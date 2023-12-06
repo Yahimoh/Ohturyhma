@@ -14,6 +14,7 @@
                 <form action="/poista/{{viite.tiedot['id']}}" method="POST">
                     <input type="submit" value="poista">
                 </form>
+                <button type="button" onclick="kopioi_bibtex({{ viite.tiedot['id'] }})" id="kopioi_bibtex_{{ viite.tiedot['id'] }}">Kopioi BibTex</button>
                 <button type="button" onclick="toggle_bibtex({{ viite.tiedot['id'] }})" id="bibtex_nappi_{{ viite.tiedot['id'] }}">Näytä BibTex</button>
             </div>
         </div>

@@ -18,6 +18,28 @@ function piilota_bibtex(viite_id, bibtex_div, nappi) {
     bibtex_div.style.display = "none";
 }
 
+function kopioi_bibtex(viite_id) {
+    let bibtex_div = document.getElementById('wrapperi_' + viite_id);
+    let kopioitavaTeksti = bibtex_div.innerText;
+    navigator.clipboard.writeText(kopioitavaTeksti);
+}
+
+function kopioiKaikkiViitteet() {
+    var viitteet = document.getElementsByClassName('bibtex-wrapperi');
+    var kopioitavaTeksti = "";
+
+    for (var i = 0; i < viitteet.length; i++) {
+        kopioitavaTeksti += viitteet[i].innerText + '\n';
+    }
+
+    // Kopioi teksti leikepöydälle
+    navigator.clipboard.writeText(kopioitavaTeksti).then(function() {
+        alert('Kaikki viitteet on kopioitu leikepöydälle!');
+    }).catch(function(err) {
+        console.error('Virhe kopioitaessa: ', err);
+    });
+}
+
 function toggleForm(formName) {
     var kirjaForm = document.getElementById('kirjaForm');
     var artikkeliForm = document.getElementById('artikkeliForm');
