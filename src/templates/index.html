@@ -7,11 +7,20 @@
         .active-button { background-color: #0398fc; color: white; }
     </style>
     <script>
-    function kopioiTeksti(viite_id){
-        var tekstikentta = document.getElementById(viite_id);
-        tekstikentta.select();
-        tekstikentta.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(tekstikentta.value);
+    function kopioiKaikkiViitteet() {
+        var viitteet = document.getElementsByClassName('viite');
+        var kopioitavaTeksti = "";
+
+        for (var i = 0; i < viitteet.length; i++) {
+            kopioitavaTeksti += viitteet[i].innerText + '\n';
+        }
+
+        // Kopioi teksti leikepöydälle
+        navigator.clipboard.writeText(kopioitavaTeksti).then(function() {
+            alert('Kaikki viitteet on kopioitu leikepöydälle!');
+        }).catch(function(err) {
+            console.error('Virhe kopioitaessa: ', err);
+        });
     }
 
     function toggleForm(formName) {
@@ -93,7 +102,9 @@
 <h2>Kaikki lisätyt viitteet</h2>
 <form action="/poista_viitteet" method="POST">
     <input type="submit" value="poista kaikki viitteet">
-</form> 
+</form>
+<button onclick="kopioiKaikkiViitteet()">Kopioi kaikki viitteet leikepöydälle</button>
+<br>
 <br>
 </div>
     {% for viite in viitteet %}
@@ -103,7 +114,6 @@
         <form action="/poista/{{viite[0]}}" method="POST">
             <input type="submit" value="poista">
         </form>
-        <button id="kopioiButton" onclick="kopioiTeksti(viite[1])">Kopioi leikepöydälle</button>
     </div>
     <br>
 {% endfor %}
