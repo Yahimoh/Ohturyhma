@@ -28,9 +28,12 @@ def lisaa_viite(viite: Viite):
     uusi_viite.tiedot["id"] = viite_id
     return uusi_viite
 
-def lue_viitteet():
-    sql = text("SELECT * FROM Viitteet;")
-    vastaus = db.session.execute(sql)
+def lue_viitteet(tyyppi=None):
+    if tyyppi is None:
+        sql = text("SELECT * FROM Viitteet;")
+    else:
+        sql = text("SELECT * FROM Viitteet WHERE tyyppi = :tyyppi")
+    vastaus = db.session.execute(sql, {"tyyppi": tyyppi})
     return [Viite(x) for x in vastaus.mappings().all()]
 
 def etsi_viite(viite_id: int):

@@ -16,7 +16,7 @@ def order():
 @app.route("/filter/<type>")
 def filter(type):
     return render_template("index.html",
-                viitteet=[(x, str(x)) for x in lue_viitteet() if x.tiedot["tyyppi"] == type])
+                viitteet=[(x, str(x)) for x in lue_viitteet(tyyppi=type)])
 
 @app.route("/send_kirja", methods=["POST"])
 def send_kirja():
