@@ -25,6 +25,9 @@ Aluksi viitteitä ei näytetä BibTex muodossa
     Sivuston Pitäisi olla Auki
     Page Should Not Contain  Piilota BibTex
 
+Tunniste generoituu oikein
+    Page Should Contain  t23
+
 Kaikkien viiteiden kopiointi leikepöydälle onnistuu
     Sivuston Pitäisi Olla Auki
     Kopioi Kaikki Viitteet Leikepöydälle Nappia Painetaan
