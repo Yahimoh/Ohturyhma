@@ -24,3 +24,16 @@ class AppLibrary:
         }
         
         requests.post(f"{self._base_url}/send", data=data)
+
+    def lisaa_artikkeliviite(self, viite, kirjailija, otsikko, vuosi, kustantaja, julkaisunumero, sivut):
+        data = {
+            "viite": viite,
+            "kirjailija": kirjailija,
+            "otsikko": otsikko,
+            "vuosi": vuosi,
+            "kustantaja": kustantaja,
+            "julkaisunumero": julkaisunumero,
+            "sivut": sivut
+        }
+        
+        requests.post(f"{self._base_url}/send", data=data)
