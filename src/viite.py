@@ -28,6 +28,9 @@ class Viite:
 
         viite += "}\n"
         return viite
+    
+    def get_type(self):
+        return self.tiedot["tyyppi"]
 
 def maarita_nimi(kirjailija, vuosi):
     kirjailija_string = kirjailija.replace(" and ", ", ")

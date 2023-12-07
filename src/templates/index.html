@@ -6,59 +6,8 @@
         .hidden { display: none; }
         .active-button { background-color: #0398fc; color: white; }
     </style>
-    <script>
-    function kopioiKaikkiViitteet() {
-        var viitteet = document.getElementsByClassName('viite');
-        var kopioitavaTeksti = "";
-
-        for (var i = 0; i < viitteet.length; i++) {
-            kopioitavaTeksti += viitteet[i].innerText + '\n';
-        }
-
-        // Kopioi teksti leikepöydälle
-        navigator.clipboard.writeText(kopioitavaTeksti).then(function() {
-            alert('Kaikki viitteet on kopioitu leikepöydälle!');
-        }).catch(function(err) {
-            console.error('Virhe kopioitaessa: ', err);
-        });
-    }
-
-    function toggleForm(formName) {
-        var kirjaForm = document.getElementById('kirjaForm');
-        var artikkeliForm = document.getElementById('artikkeliForm');
-        var kirjaButton = document.getElementById('kirjaButton');
-        var artikkeliButton = document.getElementById('artikkeliButton');
-        var kirjaHeading = document.getElementById('kirjaHeading');
-        var artikkeliHeading = document.getElementById('artikkeliHeading');
-        var kaikkiButton = document.getElementById('kaikkiButton');
-
-        if (formName === 'kirja') {
-            kirjaForm.classList.remove('hidden');
-            kirjaButton.classList.add('active-button');
-            kirjaHeading.classList.remove('hidden');
-            artikkeliForm.classList.add('hidden');
-            artikkeliButton.classList.remove('active-button');
-            artikkeliHeading.classList.add('hidden');
-            kaikkiButton.classList.remove('active-button');
-        } else if (formName === 'artikkeli') {
-            kirjaForm.classList.add('hidden');
-            kirjaButton.classList.remove('active-button');
-            kirjaHeading.classList.add('hidden');
-            artikkeliForm.classList.remove('hidden');
-            artikkeliButton.classList.add('active-button');
-            artikkeliHeading.classList.remove('hidden');
-            kaikkiButton.classList.remove('active-button');
-        } else if (formName === 'kaikki') {
-            kaikkiButton.classList.add('active-button');
-            kirjaForm.classList.remove('hidden');
-            kirjaButton.classList.remove('active-button');
-            kirjaHeading.classList.remove('hidden');
-            artikkeliForm.classList.remove('hidden');
-            artikkeliButton.classList.remove('active-button');
-            artikkeliHeading.classList.remove('hidden');
-        }
-}
-    </script>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
 <h1>Lähdeviitteet</h1>
@@ -67,6 +16,7 @@
 <button id="artikkeliButton" onclick="toggleForm('artikkeli')">Artikkeliviite</button>
 <button id="kaikkiButton" onclick="toggleForm('kaikki')">Kaikki viitteet</button>
 
+<br>
 <h2><span id="kirjaHeading">Lisää kirjaviite:</span></h2>
 <form id="kirjaForm" action="/send_kirja" method="POST">
     <p>Kirjailija:
@@ -99,23 +49,36 @@
 
 <hr>
 <div>
-<h2>Kaikki lisätyt viitteet</h2>
-<form action="/poista_viitteet" method="POST">
-    <input type="submit" value="poista kaikki viitteet">
+
+<h2><span id="kaikkiViitteet" class="hidden">Kaikki lisätyt viitteet</h2>
+<h2><span id="kirjaViitteet" class="hidden">Kaikki lisätyt kirjaviitteet</h2>
+<h2><span id="artikkeliViitteet" class="hidden">Kaikki lisätyt artikkeliviitteet</h2>
+
+
+<h2>Näytä</h2>
+
+<form action="/"><input type="submit" value="Kaikki viitteet" /></form>
+<form action="/filter/article"><input type="submit" value="Artikkeliviitteet" /></form>
+<form action="/filter/book"><input type="submit" value="Kirjaviitteet" /></form>
+
+<button onclick="kopioiKaikkiViitteet()">Kopioi kaikki viitteet leikepöydälle</button>
+
+<br>
+<form id="poistaKaikkiTeksti" action="/poista_viitteet" method="POST">
+    <input type="submit" value="Poista kaikki viitteet">
+</form>
+<form id="poistaKirjatTeksti" class="hidden" action="/poista_kirja_viitteet" method="POST" >
+    <input type="submit" value="Poista kaikki kirjaviitteet">
+</form>
+<form id="poistaArtikkelitTeksti" class="hidden" action="/poista_artikkeli_viitteet" method="POST" >
+    <input type="submit" value="Poista kaikki artikkeliviitteet">
 </form>
 <button onclick="kopioiKaikkiViitteet()">Kopioi kaikki viitteet leikepöydälle</button>
 <br>
 <br>
-</div>
+    {% from 'viite.html' import luo_viite %}
     {% for viite in viitteet %}
-    <div style="display: flex;">
-        <div class="viite" style="white-space: pre-wrap;">{{ viite[1] }}</div>
-        <!-- tähän lisättävä jotain, minkä perusteella poistava route tunnistaa viitteen -->
-        <form action="/poista/{{viite[0]}}" method="POST">
-            <input type="submit" value="poista">
-        </form>
-    </div>
-    <br>
-{% endfor %}
+        {{ luo_viite(viite) }}
+    {% endfor %}
 </body>
 </html>

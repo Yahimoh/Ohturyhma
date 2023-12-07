@@ -28,3 +28,9 @@
 
 8. Käynnistä sovellus komennolla 
 ```poetry run flask run```.
+
+### Testaaminen
+Ennen testaamista, luo uusi tietokanta. Tämän jälkeen luo `.env.test`-tiedosto juurihakemistoon ja kopioi siihen `.env.template`-tiedoston sisältö, mutta aseta `DATABASE_URL` uuden testitietokannan osoitteeksi.
+
+Suorita testit komennolla
+```poetry run pytest src```.

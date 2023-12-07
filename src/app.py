@@ -1,17 +1,22 @@
-from os import getenv
 from flask import Flask
 from flask import redirect, render_template, request
-from src.database import lisaa_viite, db, lue_viitteet, poista_kaikki_viitteet, poista_viite
+from src.database import lisaa_viite, db, lue_viitteet, poista_kaikki_viitteet, poista_viite, poista_viite_tyyppi
 from src.viite import Viite, maarita_nimi
+from src.config import DATABASE_URL
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = getenv("DATABASE_URL")
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 db.init_app(app)
 
 @app.route("/")
 def order():
     return render_template("index.html",
-                viitteet=[[x.tiedot['id'], str(x)] for x in lue_viitteet()])
+                viitteet=[(x, str(x)) for x in lue_viitteet()])
+
+@app.route("/filter/<type>")
+def filter(type):
+    return render_template("index.html",
+                viitteet=[(x, str(x)) for x in lue_viitteet(tyyppi=type)])
 
 @app.route("/send_kirja", methods=["POST"])
 def send_kirja():
@@ -50,8 +55,17 @@ def poista_viitteet():
     poista_kaikki_viitteet()
     return redirect('/')
 
+@app.route('/poista_kirja_viitteet', methods=['POST'])
+def poista_kirja_viitteet():
+    poista_viite_tyyppi("book")
+    return redirect('/')
+
+@app.route('/poista_artikkeli_viitteet', methods=['POST'])
+def poista_artikkeli_viitteet():
+    poista_viite_tyyppi("article")
+    return redirect('/')
+
 @app.route('/poista/<int:viite_id>', methods=['POST'])
 def poista(viite_id):
     poista_viite(viite_id)
     return redirect('/')
-    
