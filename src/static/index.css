@@ -25,6 +25,8 @@ body {
 }
 
 .napit {
+    flex-basis: 0;
+    flex-grow: 2.5;
     display: flex;
     flex-direction: row-reverse;
     margin-left: auto;
