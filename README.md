@@ -36,7 +36,3 @@ Ennen testaamista, luo uusi tietokanta. Tämän jälkeen luo `.env.test`-tiedost
 
 Suorita testit komennolla
 ```poetry run pytest src```.
-
-### Hyväksymistestit
-Hyväksymiskriteerien testaus suoritetaan Robot Frameworkilla. Suorittaaksesi hyväksymistestit käynnistä sovellus terminaalissa. Sitten suorita toisessa terminaalissa ```poetry run robot src```.
-
