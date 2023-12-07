@@ -21,6 +21,15 @@ Viitteen voi nähdä nappia painamalla bibtex muodossa
     Näytä Bibtex Nappia Painetaan
     BibTex Muoto Näkyy
 
+Aluksi viitteitä ei näytetä BibTex muodossa
+    Sivuston Pitäisi olla Auki
+    Page Should Not Contain  Piilota BibTex
+
+Kaikkien viiteiden kopiointi leikepöydälle onnistuu
+    Sivuston Pitäisi Olla Auki
+    Kopioi Kaikki Viitteet Leikepöydälle Nappia Painetaan
+    Alert Should Be Present  Kaikki viitteet on kopioitu leikepöydälle!
+
 *** Keywords ***
 Aseta Viite
     [Arguments]  ${viite}
@@ -51,3 +60,6 @@ Näytä Bibtex Nappia Painetaan
 BibTex Muoto Näkyy
     Page Should Contain  Piilota BibTex
 
+
+Kopioi Kaikki Viitteet Leikepöydälle Nappia Painetaan
+    Click Button  Kopioi kaikki viitteet leikepöydälle
