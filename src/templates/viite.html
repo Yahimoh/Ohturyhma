@@ -1,5 +1,7 @@
 {% macro _palanen(viite, tyyppi) %}
-    <span class="{{ tyyppi }} palanen">{{ viite.tiedot[tyyppi] }}</span>
+    {% if viite.tiedot[tyyppi] is not none %}
+        <span class="{{ tyyppi }} palanen">{{ viite.tiedot[tyyppi] }}</span>
+    {% endif %}
 {% endmacro %}
 
 {% macro luo_viite(viite_tuple) %}
@@ -10,6 +12,8 @@
             {{ _palanen(viite, "vuosi") }}
             {{ _palanen(viite, "kirjailija") }}
             {{ _palanen(viite, "kustantaja") }}
+            {{ _palanen(viite, "julkaisunumero") }}
+            {{ _palanen(viite, "sivut") }}
             <div class="napit palanen">
                 <form action="/poista/{{viite.tiedot['id']}}" method="POST">
                     <input type="submit" value="poista">
