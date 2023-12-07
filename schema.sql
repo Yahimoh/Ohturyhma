@@ -1,4 +1,3 @@
-DROP TABLE IF EXISTS KirjaViitteet;
 DROP TABLE IF EXISTS Viitteet;
 CREATE TABLE Viitteet (
     id SERIAL PRIMARY KEY,

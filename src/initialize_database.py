@@ -6,7 +6,7 @@ test_app.app_context().push()
 
 def create_tables():
     db.session.execute("""
-        CREATE TABLE Viitteet (
+        CREATE TABLE IF NOT EXISTS Viitteet (
             id SERIAL PRIMARY KEY,
             viite TEXT,
             tyyppi TEXT,
@@ -21,15 +21,14 @@ def create_tables():
     """)
     db.session.commit()
 
-def drop_tables():
+def empty_tables():
     db.session.execute("""
-        DROP TABLE IF EXISTS KirjaViitteet;
-        DROP TABLE IF EXISTS Viitteet;
+        TRUNCATE TABLE IF EXISTS Viitteet CASCADE;
     """)
     db.session.commit()
 
 def initialize_database():
-    drop_tables()
+    empty_tables()
     create_tables()
     
 if __name__ == "__main__":

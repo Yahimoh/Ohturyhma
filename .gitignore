@@ -3,6 +3,7 @@
 .coverage
 htmlcov
 .env
+.env.test
 **/interactive_console_output.xml
 log.html
 output.xml
