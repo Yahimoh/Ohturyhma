@@ -26,3 +26,29 @@
 * Epämääräisyyttä commit-viesteissä
     * Sovittu: suomeksi, ensimmäinen sana verbi yksikön 2. persoonan imperatiivissa isolla alkukirjaimella, alle 50 merkkiä
 * Viime hetken korjauksia ja hommia ennen asiakastapaamista
+
+# Retrospektiivi 4. sprintin alussa
+
+## Mitä pitää alkaa tekemään?
+* Jaetaan taskit selkeämmin
+* Daily scrum
+    * Tiivistys päivän lopussa ja ennen työskentelyä
+* Luoda brancheja myös asioista jotka eivät toimi
+* Korjaa CI heti
+* commitit suoraan mainiin, testit & pylint ekana
+    * Jos jokin ei toimi, oma branch
+
+## Minkä tekeminen pitää lopettaa?
+* Virheiden
+
+## Mitä pitää jatkaa?
+* Hyvää kommunikointi
+* Hyvää työtä
+
+## Mitä pitäisi tehdä enemmän?
+* Testejä
+
+## Mitä pitäisi tehdä vähemmän?
+* Työajan tuhlausta
+* Viime tingassa asioiden tekemistä
+* 
