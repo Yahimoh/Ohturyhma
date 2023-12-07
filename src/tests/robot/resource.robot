@@ -1,5 +1,5 @@
 *** Settings ***
-Library  AppLibrary
+Library  AppLibrary.py
 Library  SeleniumLibrary
 
 *** Variables ***
