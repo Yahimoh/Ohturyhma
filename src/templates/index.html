@@ -74,29 +74,9 @@
     <input type="submit" value="Poista kaikki artikkeliviitteet">
 </form>
 <br>
-</div>
-{% from 'viite.html' import luo_viite %}
-<div id="kaikkiViitteetContainer">
+    {% from 'viite.html' import luo_viite %}
     {% for viite in viitteet %}
         {{ luo_viite(viite) }}
     {% endfor %}
-</div>
-
-<div id="kirjaViitteetContainer" class="hidden">
-    {% for viite in viitteet %}
-        {% if viite[0].get_type() == "book" %}
-            {{ luo_viite(viite) }}
-        {% endif %}
-    {% endfor %}
-</div>
-
-<div id="artikkeliViitteetContainer" class="hidden">
-    {% for viite in viitteet %}
-        {% if viite[0].get_type() == "article" %}
-            {{ luo_viite(viite) }}
-        {% endif %}
-    {% endfor %}
-</div>
-
 </body>
 </html>
