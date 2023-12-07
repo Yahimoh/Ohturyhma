@@ -1,7 +1,9 @@
 {% macro _palanen(viite, tyyppi) %}
-    {% if viite.tiedot[tyyppi] is not none %}
-        <span class="{{ tyyppi }} palanen">{{ viite.tiedot[tyyppi] }}</span>
-    {% endif %}
+    <span class="{{ tyyppi }} palanen">
+        {% if viite.tiedot[tyyppi] is not none %}
+            {{ viite.tiedot[tyyppi] }}
+        {% endif %}
+    </span>
 {% endmacro %}
 
 {% macro luo_viite(viite_tuple) %}
@@ -18,8 +20,8 @@
                 <form action="/poista/{{viite.tiedot['id']}}" method="POST">
                     <input type="submit" value="poista">
                 </form>
-                <button type="button" onclick="kopioi_bibtex({{ viite.tiedot['id'] }})" id="kopioi_bibtex_{{ viite.tiedot['id'] }}">Kopioi BibTex</button>
-                <button type="button" onclick="toggle_bibtex({{ viite.tiedot['id'] }})" id="bibtex_nappi_{{ viite.tiedot['id'] }}">Näytä BibTex</button>
+                <button type="button" class="viite_nappi" onclick="kopioi_bibtex({{ viite.tiedot['id'] }})" id="kopioi_bibtex_{{ viite.tiedot['id'] }}">Kopioi BibTex</button>
+                <button type="button" class="viite_nappi" onclick="toggle_bibtex({{ viite.tiedot['id'] }})" id="bibtex_nappi_{{ viite.tiedot['id'] }}">Näytä BibTex</button>
             </div>
         </div>
         <div class="bibtex-wrapperi" id="wrapperi_{{ viite.tiedot['id'] }}">{{ viite_tuple[1] }}</div>

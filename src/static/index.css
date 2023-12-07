@@ -7,6 +7,10 @@ body {
     width: 75%;
 }
 
+.viite_nappi {
+    height: 20px;
+}
+
 .viite_lista {
     padding: 5px;
     display: flex;
@@ -14,7 +18,8 @@ body {
 }
 
 .palanen {
-    flex: 1 1 auto;
+    flex-basis: 0;
+    flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
 }
