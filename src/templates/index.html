@@ -57,9 +57,9 @@
 
 <h2>Näytä</h2>
 
-<button id="kaikkiViitteetButton" class="active-button" onclick="toggleShown('kaikki')">Kaikki viitteet</button>
-<button id="kaikkiArtikkeliViitteetButton" onclick="toggleShown('artikkeli')">Artikkeliviitteet</button>
-<button id="kaikkiKirjaViitteetButton" onclick="toggleShown('kirja')">Kirjaviitteet</button><br>
+<form action="/"><input type="submit" value="Kaikki viitteet" /></form>
+<form action="/filter/article"><input type="submit" value="Artikkeliviitteet" /></form>
+<form action="/filter/book"><input type="submit" value="Kirjaviitteet" /></form>
 
 <button onclick="kopioiKaikkiViitteet()">Kopioi kaikki viitteet leikepöydälle</button>
 
@@ -74,29 +74,9 @@
     <input type="submit" value="Poista kaikki artikkeliviitteet">
 </form>
 <br>
-</div>
-{% from 'viite.html' import luo_viite %}
-<div id="kaikkiViitteetContainer">
+    {% from 'viite.html' import luo_viite %}
     {% for viite in viitteet %}
         {{ luo_viite(viite) }}
     {% endfor %}
-</div>
-
-<div id="kirjaViitteetContainer" class="hidden">
-    {% for viite in viitteet %}
-        {% if viite[0].get_type() == "book" %}
-            {{ luo_viite(viite) }}
-        {% endif %}
-    {% endfor %}
-</div>
-
-<div id="artikkeliViitteetContainer" class="hidden">
-    {% for viite in viitteet %}
-        {% if viite[0].get_type() == "article" %}
-            {{ luo_viite(viite) }}
-        {% endif %}
-    {% endfor %}
-</div>
-
 </body>
 </html>
