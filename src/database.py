@@ -16,11 +16,11 @@ def lisaa_viite(viite: Viite):
                 (:viite, :tyyppi, :kirjailija, :otsikko, :vuosi, :kustantaja, :julkaisunumero, :sivut)
             RETURNING
                id;""")
-    d = {}
+    data = {}
     for lisattava in lisattavat:
-        d[lisattava] = viite.tiedot.get(lisattava, None)
+        data[lisattava] = viite.tiedot.get(lisattava, None)
 
-    vastaus = db.session.execute(sql, d)
+    vastaus = db.session.execute(sql, data)
     viite_id = vastaus.fetchone()[0]
     db.session.commit()
 
