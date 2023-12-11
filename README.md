@@ -37,3 +37,4 @@ Ennen testaamista, luo uusi tietokanta. Tämän jälkeen luo `.env.test`-tiedost
 Suorita testit komennolla
 ```poetry run pytest src```.
 
+
