@@ -24,7 +24,9 @@
                 <button type="button" class="viite_nappi" onclick="toggle_bibtex({{ viite.tiedot['id'] }})" id="bibtex_nappi_{{ viite.tiedot['id'] }}">Näytä BibTex</button>
             </div>
         </div>
-        <div class="bibtex-wrapperi" id="wrapperi_{{ viite.tiedot['id'] }}">{{ viite_tuple[1] }}</div>
+        <div class="wrapperi_bibtex_wrapperille">
+            <div class="bibtex-wrapperi" id="wrapperi_{{ viite.tiedot['id'] }}">{{ viite_tuple[1] }}</div>
+        </div>
         <br>
     </div>
 {% endmacro %}
