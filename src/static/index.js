@@ -1,3 +1,28 @@
+function käsittele_muokkaus(viite_tyyppi, viite_id) {
+    console.log(viite_id)
+    console.log(viite_tyyppi)
+    bibtex_div = document.getElementById('wrapperi_' + viite_id)
+    teksti = bibtex_div.innerText
+
+    if (viite_tyyppi === 'book') {
+        kirjailija = teksti.match(/kirjailija\s*=\s*{([^}]+)}/)[1].trim()
+        vuosi = teksti.match(/vuosi\s*=\s*{([^}]+)}/)[1].trim()
+        otsikko = teksti.match(/otsikko\s*=\s*{([^}]+)}/)[1].trim()
+        kustantaja = teksti.match(/kustantaja\s*=\s*{([^}]+)}/)[1].trim()
+        console.log(vuosi, otsikko, kirjailija, kustantaja)
+    }
+    else if (viite_tyyppi === 'article') {
+        kirjailija = teksti.match(/kirjailija\s*=\s*{([^}]+)}/)[1].trim()
+        vuosi = teksti.match(/vuosi\s*=\s*{([^}]+)}/)[1].trim()
+        otsikko = teksti.match(/otsikko\s*=\s*{([^}]+)}/)[1].trim()
+        kustantaja = teksti.match(/kustantaja\s*=\s*{([^}]+)}/)[1].trim()
+        julkaisunumero = teksti.match(/julkaisunumero\s*=\s*{([^}]+)}/)[1].trim()
+        sivut = teksti.match(/sivut\s*=\s*{([^}]+)}/)[1].trim()
+        console.log(vuosi, otsikko, kirjailija, kustantaja, julkaisunumero, sivut)
+    }
+    
+}
+
 function toggle_bibtex(viite_id) {
     let bibtex_div = document.getElementById('wrapperi_' + viite_id);
     let nappi = document.getElementById('bibtex_nappi_' + viite_id);
