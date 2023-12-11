@@ -16,8 +16,10 @@ class TestApp(unittest.TestCase):
             "kustantaja": "kustantaja",
             "viite": maarita_nimi("kirjailija", "vuosi")
         })
-        kirja = data.lisaa_viite(viite)
-        self.assertTrue(kirja)
+        data.lisaa_viite(viite)
+        viitteet = data.lue_viitteet()
+        self.assertEqual(viitteet[0].tiedot["tyyppi"], "book")
+        self.assertEqual(viitteet[0].tiedot["vuosi"], 2023)
         
     def test_lisaa_artikkeli(self):
         viite = Viite({
@@ -31,7 +33,9 @@ class TestApp(unittest.TestCase):
             "viite": maarita_nimi("kirjailija", "vuosi")
         })
         artikkeli = data.lisaa_viite(viite)
-        self.assertTrue(artikkeli)
+        viitteet = data.lue_viitteet()
+        self.assertEqual(viitteet[0].tiedot["tyyppi"], "article")
+        self.assertEqual(viitteet[0].tiedot["julkaisunumero"], "15")
         
     def test_poista_viitteet(self):
         kirjaviite = Viite({

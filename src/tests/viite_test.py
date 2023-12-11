@@ -24,11 +24,3 @@ class ViiteTest(unittest.TestCase):
     def test_maarita_nimi_tekijat_erotettu_eri_tavoilla(self):
         self.assertEqual(maarita_nimi("Sam Smith, Pekka Pouta and Joe Doe ja Tapsa Jormakka", 2021), "SPDJ21")
     
-
-
-    
-    
-    
-    
-
-    

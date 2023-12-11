@@ -1,4 +1,3 @@
-import copy
 from sqlalchemy.sql import text
 from src.viite import Viite
 from src.db import db
@@ -13,20 +12,13 @@ def lisaa_viite(viite: Viite):
             INSERT INTO
                 Viitteet (viite, tyyppi, kirjailija, otsikko, vuosi, kustantaja, julkaisunumero, sivut)
             VALUES
-                (:viite, :tyyppi, :kirjailija, :otsikko, :vuosi, :kustantaja, :julkaisunumero, :sivut)
-            RETURNING
-               id;""")
+                (:viite, :tyyppi, :kirjailija, :otsikko, :vuosi, :kustantaja, :julkaisunumero, :sivut);""")
     data = {}
     for lisattava in lisattavat:
         data[lisattava] = viite.tiedot.get(lisattava, None)
 
-    vastaus = db.session.execute(sql, data)
-    viite_id = vastaus.fetchone()[0]
+    db.session.execute(sql, data)
     db.session.commit()
-
-    uusi_viite = copy.deepcopy(viite)
-    uusi_viite.tiedot["id"] = viite_id
-    return uusi_viite
 
 def lue_viitteet(tyyppi=None):
     if tyyppi is None:
@@ -64,7 +56,7 @@ def poista_viite_tyyppi(tyyppi):
     db.session.commit()
 
 def poista_kaikki_viitteet():
-    sql = text("TRUNCATE Viitteet CASCADE;")
+    sql = text("TRUNCATE Viitteet;")
     db.session.execute(sql)
     db.session.commit()
 
@@ -80,13 +72,13 @@ def tarkasta_viiteavain_unique(viite: Viite):
 
         if result == 0:            
             break
-        else:            
-            if kirjain_index < len(aakkoset):
-                uusi_viite = alkuperainen_viite + aakkoset[kirjain_index]
-                kirjain_index += 1
-            else:                
-                uusi_viite = alkuperainen_viite + aakkoset[kirjain_index // len(aakkoset) - 1] + aakkoset[kirjain_index % len(aakkoset)]
-                kirjain_index += 1
+
+        if kirjain_index < len(aakkoset):
+            uusi_viite = alkuperainen_viite + aakkoset[kirjain_index]
+            kirjain_index += 1
+        else:                
+            uusi_viite = alkuperainen_viite + aakkoset[kirjain_index // len(aakkoset) - 1] + aakkoset[kirjain_index % len(aakkoset)]
+            kirjain_index += 1
 
     viite.tiedot["viite"] = uusi_viite
     return viite

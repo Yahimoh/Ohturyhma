@@ -13,10 +13,10 @@ def order():
     return render_template("index.html",
                 viitteet=[(x, str(x)) for x in lue_viitteet()])
 
-@app.route("/filter/<type>")
-def filter(type):
+@app.route("/filter/<tyyppi>")
+def filter_viitteet(tyyppi):
     return render_template("index.html",
-                viitteet=[(x, str(x)) for x in lue_viitteet(tyyppi=type)])
+                viitteet=[(x, str(x)) for x in lue_viitteet(tyyppi=tyyppi)])
 
 @app.route("/send_kirja", methods=["POST"])
 def send_kirja():
