@@ -8,77 +8,112 @@
     </style>
     <script src="{{ url_for('static', filename='index.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap">
 </head>
 <body>
-<h1>Lähdeviitteet</h1>
+<header class="header">
+    <h1>Lähdeviitteet</h1>
+</header>
+<div class="split left">
+    <div class="centered">
+        <h2><span id="kirjaHeading">Lisää kirjaviite:</span></h2>
+        <form id="kirjaForm" action="/send_kirja" method="POST">
+            <div>
+                <label for="kirjailija">Kirjailija:</label>
+                <input type="text" id="kirjailija" name="kirjailija" required>
+            </div>
+            <div>
+                <label for="otsikko">Otsikko:</label>
+                <input type="text" id="otsikko" name="otsikko" required>
+            </div>
+            <div>
+                <label for="vuosi">Vuosi:</label>
+                <input type="number" id="vuosi" name="vuosi" required>
+            </div>
+            <div>
+                <label for="kustantaja">Kustantaja:</label>
+                <input type="text" id="kustantaja" name="kustantaja" required>
+            </div>
+            <div>
+                <input type="submit" value="Lisää">
+            </div>
+        </form>
 
-<button id="kirjaButton" class="active-button" onclick="toggleForm('kirja')">Kirjaviite</button>
-<button id="artikkeliButton" onclick="toggleForm('artikkeli')">Artikkeliviite</button>
-<button id="kaikkiButton" onclick="toggleForm('kaikki')">Kaikki viitteet</button>
+        <h2><span id="artikkeliHeading" class="hidden">Lisää artikkeliviite:</span></h2>
+        <form id="artikkeliForm" class="hidden" action="/send_artikkeli" method="POST">
+            <div>
+                <label for="kirjailija">Kirjailija:</label>
+                <input type="text" id="kirjailija" name="kirjailija" required>
+            </div>
+            <div>
+                <label for="otsikko">Otsikko:</label>
+                <input type="text" id="otsikko" name="otsikko" required>
+            </div>
+            <div>
+                <label for="kustantaja">Kustantaja:</label>
+                <input type="text" id="kustantaja" name="kustantaja" required>
+            </div>
+            <div>
+                <label for="vuosi">Vuosi:</label>
+                <input type="number" id="vuosi" name="vuosi" required>
+            </div>
+            <div>
+                <label for="julkaisunumero">Julkaisunumero:</label>
+                <input type="text" id="julkaisunumero" name="julkaisunumero">
+            </div>
+            <div>
+                <label for="sivut">Sivut:</label>
+                <input type="text" id="sivut" name="sivut">
+            </div>
+            <div>
+                <input type="submit" value="Lisää">
+            </div>
+        </form>
+        <br>
+        <button id="kirjaButton" class="form-submit-button" onclick="toggleForm('kirja')">Lisää kirjaviite</button>
+        <br>
+        <button id="artikkeliButton" class="form-submit-button" onclick="toggleForm('artikkeli')">Lisää artikkeliviite</button>
 
-<br>
-<h2><span id="kirjaHeading">Lisää kirjaviite:</span></h2>
-<form id="kirjaForm" action="/send_kirja" method="POST">
-    <p>Kirjailija:
-    <input type="text" name="kirjailija"></p>
-    <p>Otsikko:
-    <input type="text" name="otsikko"></p>
-    <p>Vuosi:
-    <input type="number" name="vuosi"></p>
-    <p>Kustantaja:
-    <input type="text" name="kustantaja"></p>
-    <input type="submit" value="Lisää">
-</form>
+    </div>
+</div>
 
-<h2><span id="artikkeliHeading" class="hidden">Lisää artikkeliviite:</span></h2>
-<form id="artikkeliForm" class="hidden" action="/send_artikkeli" method="POST">
-    <p>Kirjailija:
-        <input type="text" name="kirjailija"></p>
-    <p>Otsikko:
-        <input type="text" name="otsikko"></p>
-    <p>Kustantaja:
-        <input type="text" name="kustantaja"></p>
-    <p>Vuosi:
-        <input type="number" name="vuosi"></p>
-    <p>Julkaisunumero:
-        <input type="text" name="julkaisunumero"></p>
-    <p>Sivut:
-        <input type="text" name="sivut"></p>
-        <input type="submit" value="Lisää">
-</form>
+<div class="split right">
+    <h2><span id="kaikkiViitteet" class="hidden">Kaikki lisätyt viitteet</h2>
+        <h2><span id="kirjaViitteet" class="hidden">Kaikki lisätyt kirjaviitteet</h2>
+        <h2><span id="artikkeliViitteet" class="hidden">Kaikki lisätyt artikkeliviitteet</h2>
+    <div class="centered">
+        <div class="buttons">
+            <form action="/"><input type="submit" class="form-submit-button" value="Kaikki viitteet" /></form>
+            <form action="/filter/article"><input type="submit" class="form-submit-button"value="Artikkeliviitteet" /></form>
+            <form action="/filter/book"><input type="submit" class="form-submit-button" value="Kirjaviitteet" /></form>
+        </div>
+        <div class="buttons">
+            <button class="form-submit-button" class="form-submit-button" onclick="kopioiKaikkiViitteet()">Kopioi kaikki viitteet leikepöydälle</button>
+            <br>
+            <form id="poistaKaikkiTeksti" action="/poista_viitteet" method="POST">
+                <input type="submit" class="form-submit-button" value="Poista kaikki viitteet">
+            </form>
+            <form id="poistaKirjatTeksti" class="hidden" action="/poista_kirja_viitteet" method="POST" >
+                <input type="submit" class="form-submit-button" value="Poista kaikki kirjaviitteet">
+            </form>
+            <form id="poistaArtikkelitTeksti" class="hidden" action="/poista_artikkeli_viitteet" method="POST" >
+                <input type="submit" class="form-submit-button" value="Poista kaikki artikkeliviitteet">
+            </form>
+        </div>
+        <br>
+        <br>
+        <table>
+            <tbody>
+            {% from 'viite.html' import luo_viite %}
+            {% for viite in viitteet %}
+            <tr>
+                <td>{{ luo_viite(viite) }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-<hr>
-<div>
-
-<h2><span id="kaikkiViitteet" class="hidden">Kaikki lisätyt viitteet</h2>
-<h2><span id="kirjaViitteet" class="hidden">Kaikki lisätyt kirjaviitteet</h2>
-<h2><span id="artikkeliViitteet" class="hidden">Kaikki lisätyt artikkeliviitteet</h2>
-
-
-<h2>Näytä</h2>
-
-<form action="/"><input type="submit" value="Kaikki viitteet" /></form>
-<form action="/filter/article"><input type="submit" value="Artikkeliviitteet" /></form>
-<form action="/filter/book"><input type="submit" value="Kirjaviitteet" /></form>
-
-<button onclick="kopioiKaikkiViitteet()">Kopioi kaikki viitteet leikepöydälle</button>
-
-<br>
-<form id="poistaKaikkiTeksti" action="/poista_viitteet" method="POST">
-    <input type="submit" value="Poista kaikki viitteet">
-</form>
-<form id="poistaKirjatTeksti" class="hidden" action="/poista_kirja_viitteet" method="POST" >
-    <input type="submit" value="Poista kaikki kirjaviitteet">
-</form>
-<form id="poistaArtikkelitTeksti" class="hidden" action="/poista_artikkeli_viitteet" method="POST" >
-    <input type="submit" value="Poista kaikki artikkeliviitteet">
-</form>
-<button onclick="kopioiKaikkiViitteet()">Kopioi kaikki viitteet leikepöydälle</button>
-<br>
-<br>
-    {% from 'viite.html' import luo_viite %}
-    {% for viite in viitteet %}
-        {{ luo_viite(viite) }}
-    {% endfor %}
+    </div>
+</div>
 </body>
 </html>

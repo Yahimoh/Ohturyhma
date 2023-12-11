@@ -14,4 +14,3 @@ if DATABASE_URL is None:
     raise Exception(
         "Database URI is not defined with the DATABASE_URL environment variable"
     )
-
