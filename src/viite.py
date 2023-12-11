@@ -23,7 +23,7 @@ class Viite:
         viite = "@" + self.tiedot["tyyppi"] + "{" + self.tiedot["viite"] + ",\n"
 
         for avain, arvo in self.tiedot.items():
-            if avain != "tyyppi" and avain != "viite" and avain != "id" and arvo != None:
+            if avain != "tyyppi" and avain != "viite" and avain != "id" and arvo is not None:
                 viite += f"    {avain} = {{{arvo}}},\n"
 
         viite += "}\n"
