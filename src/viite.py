@@ -19,12 +19,13 @@ class Viite:
         sanakirjan perusteella.
         """
 
-        print(self.tiedot)
         viite = "@" + self.tiedot["tyyppi"] + "{" + self.tiedot["viite"] + ",\n"
 
         for avain, arvo in self.tiedot.items():
             if avain != "tyyppi" and avain != "viite" and avain != "id" and arvo is not None:
                 viite += f"    {avain} = {{{arvo}}},\n"
+
+        viite = viite[:-2] + viite[-1:]
 
         viite += "}\n"
         return viite
@@ -41,4 +42,6 @@ def maarita_nimi(kirjailija, vuosi):
     tunniste = ''.join([author[0] for author in kirjailijat])
     tunniste += str(vuosi)[-2:]
             
+
     return tunniste
+
