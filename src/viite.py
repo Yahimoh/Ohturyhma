@@ -39,7 +39,9 @@ def maarita_nimi(kirjailija, vuosi):
     
     kirjailijat = [name.split()[-1] for name in kirjailija_string.split(", ")]
     
-    identifier = ''.join([author[0] for author in kirjailijat])
-    identifier += str(vuosi)[-2:]
+    tunniste = ''.join([author[0] for author in kirjailijat])
+    tunniste += str(vuosi)[-2:]
             
-    return identifier
+
+    return tunniste
+
