@@ -36,9 +36,16 @@
                 <label for="kustantaja">Kustantaja:</label>
                 <input type="text" id="kustantaja" name="kustantaja" required {% if muokattava.kustantaja and muokattava.tyyppi == 'book' %} value="{{muokattava.kustantaja}}" {% endif %}>
             </div>
+            {% if muokattava == False%}
             <div>
                 <input type="submit" value="Lisää">
+                <div>{{muokattava.vuosi}}</div>
             </div>
+            {% else %}
+            <div>
+                <input type="submit" value="Lähetä muutokset">
+            </div>
+            {% endif %}
         </form>
 
         <h2><span id="artikkeliHeading" class="hidden">Lisää artikkeliviite:</span></h2>
@@ -67,9 +74,17 @@
                 <label for="sivut">Sivut:</label>
                 <input type="text" id="sivut" name="sivut" {% if muokattava.sivut and muokattava.tyyppi=='article'%} value="{{muokattava.sivut}}" {% endif %}>
             </div>
+            {% if muokattava == False%}
             <div>
                 <input type="submit" value="Lisää">
+                <div>{{muokattava.vuosi}}</div>
             </div>
+            {% else %}
+            <div>
+                <input type="submit" value="Lähetä muutokset">
+            </div>
+            {% endif %}
+            
         </form>
         <br>
         <button id="kirjaButton" class="form-submit-button" onclick="toggleForm('kirja')">Lisää kirjaviite</button>
