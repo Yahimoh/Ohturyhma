@@ -82,3 +82,20 @@ def tarkasta_viiteavain_unique(viite: Viite):
 
     viite.tiedot["viite"] = uusi_viite
     return viite
+
+def muokkaa_kirjaviitetta(id, tiedot):
+    sql = text('UPDATE Viitteet SET kirjailija = :kirjailija, otsikko = :otsikko, vuosi=:vuosi kustantaja=:kustantaja WHERE id = :id;')
+    db.session.execute(sql, {"id":id, "kirjailija":tiedot['kirjailija'], "otsikko":tiedot['otsikko'], "vuosi":tiedot['vuosi'], "kustantaja":tiedot['kustantaja']})
+    db.session.commit()
+    
+
+def muokkaa_artikkeliviitetta(id, tiedot):
+    sql = text('UPDATE Viitteet SET kirjailija = :kirjailija, otsikko = :otsikko, vuosi=:vuosi kustantaja=:kustantaja, julkaisunumero=:julkaisunumero, sivut=:sivut WHERE id = :id;')
+    db.session.execute(sql, {"id":id, "kirjailija":tiedot['kirjailija'], "otsikko":tiedot['otsikko'], "vuosi":tiedot['vuosi'], "kustantaja":tiedot['kustantaja'], "julkaisunumero":tiedot['julkaisunumero'], "sivut":tiedot['sivut']})
+    db.session.commit()
+
+def hae_viite(id):
+    sql = text('SELECT * FROM Viitteet WHERE id=:id')
+    vastaus = db.session.execute(sql, {"id":id}).fetchone()
+    return vastaus
+    

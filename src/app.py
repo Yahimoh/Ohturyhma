@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import redirect, render_template, request
-from src.database import lisaa_viite, db, lue_viitteet, poista_kaikki_viitteet, poista_viite, poista_viite_tyyppi
+from src.database import lisaa_viite, db, lue_viitteet, poista_kaikki_viitteet, poista_viite, poista_viite_tyyppi, muokkaa_kirjaviitetta, muokkaa_artikkeliviitetta, hae_viite
 from src.viite import Viite, maarita_nimi
 from src.config import DATABASE_URL
 
@@ -11,12 +11,12 @@ db.init_app(app)
 @app.route("/")
 def order():
     return render_template("index.html",
-                viitteet=[(x, str(x)) for x in lue_viitteet()])
+                viitteet=[(x, str(x)) for x in lue_viitteet()], muokattava=False)
 
 @app.route("/filter/<tyyppi>")
 def filter_viitteet(tyyppi):
     return render_template("index.html",
-                viitteet=[(x, str(x)) for x in lue_viitteet(tyyppi=tyyppi)])
+                viitteet=[(x, str(x)) for x in lue_viitteet(tyyppi=tyyppi)], muokattava=False)
 
 @app.route("/send_kirja", methods=["POST"])
 def send_kirja():
@@ -69,3 +69,37 @@ def poista_artikkeli_viitteet():
 def poista(viite_id):
     poista_viite(viite_id)
     return redirect('/')
+
+@app.route('/muokkaa_kirjaviite/<int:id>', methods=['POST'])
+def muokkaa(id):
+    kirjailija = request.form['kirjailija']
+    otsikko = request.form['otsikko']
+    vuosi = request.form['vuosi']
+    kustantaja = request.form['kustantaja']
+    tiedot = {"kirjalija":kirjailija, "otsikko":otsikko, "vuosi":vuosi, "kustantaja":kustantaja}
+
+    muokkaa_kirjaviitetta(id, tiedot)
+    return redirect('/')
+
+@app.route('/muokkaa_artikkeliviitetta/<int:id>', methods=['POST'])
+def muokkaa_artikkeli(id):
+    kirjailija = request.form['kirjailija']
+    otsikko = request.form['otsikko']
+    vuosi = request.form['vuosi']
+    kustantaja = request.form['kustantaja']
+    sivut = request.form['sivut']
+    julkaisunumero = request.form['julkaisunumero']
+    tiedot = {"kirjalija":kirjailija, "otsikko":otsikko, "vuosi":vuosi, "kustantaja":kustantaja, "julkaisunumero":julkaisunumero, "sivut":sivut}
+    
+    muokkaa_artikkeliviitetta(id, tiedot)
+    return redirect('/')
+
+@app.route("/lataa_viitteen_tiedot/<int:id>", methods=['POST'])
+def lataa_viitteen_tiedot(id):
+    viite = hae_viite(id)
+    
+    return render_template("index.html", muokattava=viite, viitteet=[(x, str(x)) for x in lue_viitteet()])
+
+
+
+

@@ -22,7 +22,7 @@
         <form id="kirjaForm" action="/send_kirja" method="POST">
             <div>
                 <label for="kirjailija">Kirjailija:</label>
-                <input type="text" id="kirjailija" name="kirjailija" required>
+                <input type="text" id="kirjailija" name="kirjailija" required {% if muokattava.kirjailija %} value="{{muokattava.kirjailija}}" {% endif %}>
             </div>
             <div>
                 <label for="otsikko">Otsikko:</label>
