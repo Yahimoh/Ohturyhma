@@ -22,9 +22,9 @@ def lisaa_viite(viite: Viite):
 
 def lue_viitteet(tyyppi=None):
     if tyyppi is None:
-        sql = text("SELECT * FROM Viitteet;")
+        sql = text("SELECT * FROM Viitteet ORDER BY id;")
     else:
-        sql = text("SELECT * FROM Viitteet WHERE tyyppi = :tyyppi")
+        sql = text("SELECT * FROM Viitteet WHERE tyyppi = :tyyppi ORDER BY id;")
     vastaus = db.session.execute(sql, {"tyyppi": tyyppi})
     return [Viite(x) for x in vastaus.mappings().all()]
 
