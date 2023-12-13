@@ -49,7 +49,7 @@
         </form>
 
         <h2><span id="artikkeliHeading" class="hidden">Lisää artikkeliviite:</span></h2>
-        <form id="artikkeliForm" class="hidden" {% if muokattava == False %} action="/send_kirja" {% else %} action='/muokkaa_artikkeliviitetta/{{muokattava.id}}' {% endif %} method="POST">
+        <form id="artikkeliForm" class="hidden" {% if muokattava == False %} action="/send_artikkeli" {% else %} action='/muokkaa_artikkeliviitetta/{{muokattava.id}}' {% endif %} method="POST">
             <div>
                 <label for="kirjailija">Kirjailija:</label>
                 <input type="text" id="kirjailija" name="kirjailija" required {% if muokattava.kirjailija and muokattava.tyyppi=='article' %} value="{{muokattava.kirjailija}}" {% endif %}>
