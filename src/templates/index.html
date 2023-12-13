@@ -72,38 +72,35 @@
             </div>
         </form>
         <br>
-        <button id="kirjaButton" class="form-submit-button" onclick="toggleForm('kirja')">Lisää kirjaviite</button>
+        <button id="kirjaButton" class="form-submit-button" onclick="toggleForm('kirja')">Kirjaviite</button>
         <br>
-        <button id="artikkeliButton" class="form-submit-button" onclick="toggleForm('artikkeli')">Lisää artikkeliviite</button>
+        <button id="artikkeliButton" class="form-submit-button" onclick="toggleForm('artikkeli')">Artikkeliviite</button>
 
     </div>
 </div>
 
 <div id="right">
-    <h2><span id="kaikkiViitteet" class="hidden">Kaikki lisätyt viitteet</h2>
-        <h2><span id="kirjaViitteet" class="hidden">Kaikki lisätyt kirjaviitteet</h2>
-        <h2><span id="artikkeliViitteet" class="hidden">Kaikki lisätyt artikkeliviitteet</h2>
     <div class="centered">
-        <div class="buttons">
-            <form action="/"><input type="submit" class="form-submit-button" value="Kaikki viitteet" /></form>
-            <form action="/filter/article"><input type="submit" class="form-submit-button"value="Artikkeliviitteet" /></form>
-            <form action="/filter/book"><input type="submit" class="form-submit-button" value="Kirjaviitteet" /></form>
+        <div id="yla">
+            <div class="buttons">
+                <form action="/"><input type="submit" class="form-submit-button" value="Kaikki viitteet" /></form>
+                <form action="/filter/article"><input type="submit" class="form-submit-button"value="Artikkeliviitteet" /></form>
+                <form action="/filter/book"><input type="submit" class="form-submit-button" value="Kirjaviitteet" /></form>
+            </div>
+            <div class="buttons">
+                <button class="form-submit-button" class="form-submit-button" onclick="kopioiKaikkiViitteet()">Kopioi kaikki viitteet leikepöydälle</button>
+                <br>
+                <form id="poistaKaikkiTeksti" action="/poista_viitteet" method="POST">
+                    <input type="submit" class="form-submit-button" value="Poista kaikki viitteet">
+                </form>
+                <form id="poistaKirjatTeksti" class="hidden" action="/poista_kirja_viitteet" method="POST" >
+                    <input type="submit" class="form-submit-button" value="Poista kaikki kirjaviitteet">
+                </form>
+                <form id="poistaArtikkelitTeksti" class="hidden" action="/poista_artikkeli_viitteet" method="POST" >
+                    <input type="submit" class="form-submit-button" value="Poista kaikki artikkeliviitteet">
+                </form>
+            </div>
         </div>
-        <div class="buttons">
-            <button class="form-submit-button" class="form-submit-button" onclick="kopioiKaikkiViitteet()">Kopioi kaikki viitteet leikepöydälle</button>
-            <br>
-            <form id="poistaKaikkiTeksti" action="/poista_viitteet" method="POST">
-                <input type="submit" class="form-submit-button" value="Poista kaikki viitteet">
-            </form>
-            <form id="poistaKirjatTeksti" class="hidden" action="/poista_kirja_viitteet" method="POST" >
-                <input type="submit" class="form-submit-button" value="Poista kaikki kirjaviitteet">
-            </form>
-            <form id="poistaArtikkelitTeksti" class="hidden" action="/poista_artikkeli_viitteet" method="POST" >
-                <input type="submit" class="form-submit-button" value="Poista kaikki artikkeliviitteet">
-            </form>
-        </div>
-        <br>
-        <br>
         {% from 'viite.html' import luo_viite %}
         {% for viite in viitteet %}
             {{ luo_viite(viite) }}
