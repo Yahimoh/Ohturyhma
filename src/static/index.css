@@ -41,6 +41,8 @@ body{
     white-space: pre-wrap;
     text-align: left;
     display: none;
+    background-color: #ebebeb;
+    width:100%;
 }
 
 .wrapperi_bibtex_wrapperille {
