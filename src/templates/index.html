@@ -22,19 +22,19 @@
         <form id="kirjaForm" action="/send_kirja" method="POST">
             <div>
                 <label for="kirjailija">Kirjailija:</label>
-                <input type="text" id="kirjailija" name="kirjailija" required {% if muokattava.kirjailija %} value="{{muokattava.kirjailija}}" {% endif %}>
+                <input type="text" id="kirjailija" name="kirjailija" required {% if muokattava.kirjailija and muokattava.tyyppi == 'book' %} value="{{muokattava.kirjailija}}" {% endif %}>
             </div>
             <div>
                 <label for="otsikko">Otsikko:</label>
-                <input type="text" id="otsikko" name="otsikko" required>
+                <input type="text" id="otsikko" name="otsikko" required {% if muokattava.otsikko and muokattava.tyyppi == 'book' %} value="{{muokattava.otsikko}}" {% endif %}>
             </div>
             <div>
                 <label for="vuosi">Vuosi:</label>
-                <input type="number" id="vuosi" name="vuosi" required>
+                <input type="number" id="vuosi" name="vuosi" required {% if muokattava.vuosi and muokattava.tyyppi == 'book' %} value="{{muokattava.vuosi}}" {% endif %}>
             </div>
             <div>
                 <label for="kustantaja">Kustantaja:</label>
-                <input type="text" id="kustantaja" name="kustantaja" required>
+                <input type="text" id="kustantaja" name="kustantaja" required {% if muokattava.kustantaja and muokattava.tyyppi == 'book' %} value="{{muokattava.kustantaja}}" {% endif %}>
             </div>
             <div>
                 <input type="submit" value="Lisää">
@@ -45,27 +45,27 @@
         <form id="artikkeliForm" class="hidden" action="/send_artikkeli" method="POST">
             <div>
                 <label for="kirjailija">Kirjailija:</label>
-                <input type="text" id="kirjailija" name="kirjailija" required>
+                <input type="text" id="kirjailija" name="kirjailija" required {% if muokattava.kirjailija and muokattava.tyyppi=='article' %} value="{{muokattava.kirjailija}}" {% endif %}>
             </div>
             <div>
                 <label for="otsikko">Otsikko:</label>
-                <input type="text" id="otsikko" name="otsikko" required>
+                <input type="text" id="otsikko" name="otsikko" required {% if muokattava.otsikko and muokattava.tyyppi=='article' %} value="{{muokattava.otsikko}}" {% endif %}>
             </div>
             <div>
                 <label for="kustantaja">Kustantaja:</label>
-                <input type="text" id="kustantaja" name="kustantaja" required>
+                <input type="text" id="kustantaja" name="kustantaja" required {% if muokattava.kustantaja and muokattava.tyyppi=='article' %} value="{{muokattava.kustantaja}}" {% endif %}>
             </div>
             <div>
                 <label for="vuosi">Vuosi:</label>
-                <input type="number" id="vuosi" name="vuosi" required>
+                <input type="number" id="vuosi" name="vuosi" required {% if muokattava.vuosi and muokattava.tyyppi=='article' %} value="{{muokattava.vuosi}}" {% endif %}>
             </div>
             <div>
                 <label for="julkaisunumero">Julkaisunumero:</label>
-                <input type="text" id="julkaisunumero" name="julkaisunumero">
+                <input type="text" id="julkaisunumero" name="julkaisunumero" {% if muokattava.julkaisunumero and muokattava.tyyppi=='article'%} value="{{muokattava.julkaisunumero}}" {% endif %}>
             </div>
             <div>
                 <label for="sivut">Sivut:</label>
-                <input type="text" id="sivut" name="sivut">
+                <input type="text" id="sivut" name="sivut" {% if muokattava.sivut and muokattava.tyyppi=='article'%} value="{{muokattava.sivut}}" {% endif %}>
             </div>
             <div>
                 <input type="submit" value="Lisää">
