@@ -22,7 +22,7 @@ def lisaa_viite(viite: Viite):
 
 def lue_viitteet(tyyppi=None):
     if tyyppi is None:
-        sql = text("SELECT * FROM Viitteet;")
+        sql = text("SELECT * FROM Viitteet ORDER BY id;")
     else:
         sql = text("SELECT * FROM Viitteet WHERE tyyppi = :tyyppi")
     vastaus = db.session.execute(sql, {"tyyppi": tyyppi})
@@ -84,13 +84,14 @@ def tarkasta_viiteavain_unique(viite: Viite):
     return viite
 
 def muokkaa_kirjaviitetta(id, tiedot):
-    sql = text('UPDATE Viitteet SET kirjailija = :kirjailija, otsikko = :otsikko, vuosi=:vuosi kustantaja=:kustantaja WHERE id = :id;')
+    print(tiedot)
+    sql = text('UPDATE Viitteet SET kirjailija = :kirjailija, otsikko = :otsikko, vuosi=:vuosi ,kustantaja=:kustantaja WHERE id = :id;')
     db.session.execute(sql, {"id":id, "kirjailija":tiedot['kirjailija'], "otsikko":tiedot['otsikko'], "vuosi":tiedot['vuosi'], "kustantaja":tiedot['kustantaja']})
     db.session.commit()
     
 
 def muokkaa_artikkeliviitetta(id, tiedot):
-    sql = text('UPDATE Viitteet SET kirjailija = :kirjailija, otsikko = :otsikko, vuosi=:vuosi kustantaja=:kustantaja, julkaisunumero=:julkaisunumero, sivut=:sivut WHERE id = :id;')
+    sql = text('UPDATE Viitteet SET kirjailija = :kirjailija, otsikko = :otsikko, vuosi=:vuosi, kustantaja=:kustantaja, julkaisunumero=:julkaisunumero, sivut=:sivut WHERE id = :id;')
     db.session.execute(sql, {"id":id, "kirjailija":tiedot['kirjailija'], "otsikko":tiedot['otsikko'], "vuosi":tiedot['vuosi'], "kustantaja":tiedot['kustantaja'], "julkaisunumero":tiedot['julkaisunumero'], "sivut":tiedot['sivut']})
     db.session.commit()
 

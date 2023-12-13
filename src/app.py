@@ -76,7 +76,7 @@ def muokkaa(id):
     otsikko = request.form['otsikko']
     vuosi = request.form['vuosi']
     kustantaja = request.form['kustantaja']
-    tiedot = {"kirjalija":kirjailija, "otsikko":otsikko, "vuosi":vuosi, "kustantaja":kustantaja}
+    tiedot = {"kirjailija":kirjailija, "otsikko":otsikko, "vuosi":vuosi, "kustantaja":kustantaja}
 
     muokkaa_kirjaviitetta(id, tiedot)
     return redirect('/')
@@ -89,7 +89,7 @@ def muokkaa_artikkeli(id):
     kustantaja = request.form['kustantaja']
     sivut = request.form['sivut']
     julkaisunumero = request.form['julkaisunumero']
-    tiedot = {"kirjalija":kirjailija, "otsikko":otsikko, "vuosi":vuosi, "kustantaja":kustantaja, "julkaisunumero":julkaisunumero, "sivut":sivut}
+    tiedot = {"kirjailija":kirjailija, "otsikko":otsikko, "vuosi":vuosi, "kustantaja":kustantaja, "julkaisunumero":julkaisunumero, "sivut":sivut}
     
     muokkaa_artikkeliviitetta(id, tiedot)
     return redirect('/')
