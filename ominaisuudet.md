@@ -7,3 +7,4 @@
 * Voit nähdä kaikki viitteet, kirjaviitteet, artikkeliviitteet
 * Kaikkien BibTex:ien kopiointi
 * Yksittäiset viitteet: näytä BibTex, kopioi
+* Sivu näyttää todella kauniilta

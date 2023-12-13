@@ -6,6 +6,10 @@
 
 [Backlogit](https://helsinkifi-my.sharepoint.com/:x:/g/personal/otpe_ad_helsinki_fi/EQPD5vKTcAJCqVxXUmrJUmQB8VH2PkiYl4GyYAWsyuskJA?e=4%3AqtdKDz&fromShare=true&at=9)
 
+[Ominaisuudet](./ominaisuudet.md)
+
+[Raportti](./raportti.md)
+
 
 ### Definition of done
 - Ominaisuus on toteutettu ja tarpeeksi testattu
