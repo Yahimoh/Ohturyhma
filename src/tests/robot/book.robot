@@ -58,7 +58,7 @@ Lisää Kirjan Tiedot
     Click Button  Lisää
 
 Näytä Bibtex Nappia Painetaan
-    Click button  Näytä BibTex
+    Click Button  Näytä BibTex
 
 BibTex Muoto Näkyy
     Page Should Contain  Piilota BibTex

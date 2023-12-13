@@ -5,7 +5,7 @@ Suite Teardown  Close Browser
 Test Setup  Mene Sivustolle
 
 *** Variables ***
-${PITKA_SYOTE}    ${'a'*101}
+${PITKA_SYOTE}  ${100**100}
 
 *** Test Cases ***
 
