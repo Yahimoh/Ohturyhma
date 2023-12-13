@@ -1,13 +1,13 @@
 body{
-    width: 100%;
-    height: 100vh;
     background: white;
   }
 
 
 .viite_base {
     margin: 0px 20px 0px 20px;
-    width: 90%;
+    border: 1px solid black;
+    text-align: center;
+    background-color: #e3e5e6;
 }
 
 .viite_nappi {
@@ -50,56 +50,30 @@ body{
     width: 40%;
 }
 
-.split {
-    height: 50%;
-    width: 20%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow-x: hidden;
-    padding-top: 0px;
-    padding-left: 200px;
-    font-size: medium;
-}
-  
-.left {
-    left: 0;
-    position: relative;
-    z-index: 2;
-    background-color: #e3e5e6;
-    height: 100vh;
-    border-right: 2px solid black;
-    border-left: 2px solid black;
-    border-bottom: 2px solid black;
-}
-  
-.right {
-    width: 80%;
-    right: 0;
-    z-index: 1;
-    position: absolute;
-    padding-top: 900px;
-    border-top: 2px solid black;
-    border: 2px black;
-    top: 0;
-    padding-left: 10pc;
-    overflow-x: auto;
-}
-  
-.centered {
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+#main {
+    display: flex;
+    gap: 1em;
+    padding: 1em;
     text-align: center;
-    font-family: 'Roboto', sans-serif;
 }
 
-.header {
+#left {
+    z-index: 2;
+    background-color: #e3e5e6;
+    border: 2px solid black;
+}
+  
+#right {
+    z-index: 1;
+    border-top: 2px solid black;
+    border: 2px black;
+    flex-grow: 1;
+}
+
+#header {
     font-family: 'Roboto', sans-serif;
     background-color: white;
     color: black;
-    padding: 30px;
     text-align: center;
     font-size: 2em;
     border: 2px solid black;
@@ -131,21 +105,6 @@ body{
     border-radius: 20px;
     text-shadow: none;
     font-size: 16px;
-}
-
-table {
-    width: 140%;
-    border-collapse: collapse;
-}
-
-th, td {
-    border: 1px solid black;
-    text-align: center;
-    background-color: #e3e5e6;
-}
-
-th {
-    background-color: white;
 }
 
 .buttons {

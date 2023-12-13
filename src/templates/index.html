@@ -11,10 +11,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap">
 </head>
 <body>
-<header class="header">
+<div id="header">
     <h1>Lähdeviitteet</h1>
-</header>
-<div class="split left">
+</div>
+
+<div id="main">
+<div id="left">
     <div class="centered">
         <h2><span id="kirjaHeading">Lisää kirjaviite:</span></h2>
         <form id="kirjaForm" action="/send_kirja" method="POST">
@@ -77,7 +79,7 @@
     </div>
 </div>
 
-<div class="split right">
+<div id="right">
     <h2><span id="kaikkiViitteet" class="hidden">Kaikki lisätyt viitteet</h2>
         <h2><span id="kirjaViitteet" class="hidden">Kaikki lisätyt kirjaviitteet</h2>
         <h2><span id="artikkeliViitteet" class="hidden">Kaikki lisätyt artikkeliviitteet</h2>
@@ -102,18 +104,14 @@
         </div>
         <br>
         <br>
-        <table>
-            <tbody>
-            {% from 'viite.html' import luo_viite %}
-            {% for viite in viitteet %}
-            <tr>
-                <td>{{ luo_viite(viite) }}</td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-
+        {% from 'viite.html' import luo_viite %}
+        {% for viite in viitteet %}
+            {{ luo_viite(viite) }}
+        {% endfor %}
     </div>
 </div>
+
+</div>
+
 </body>
 </html>
