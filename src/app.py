@@ -35,8 +35,8 @@ def send_kirja():
         lisaa_viite(viite)
         return redirect("/")
 
-    except SyoteVirhe as e:        
-        return render_template("index.html", error=e, error_kirja_tiedot=form, viitteet=[(x, str(x)) for x in lue_viitteet()])
+    except SyoteVirhe as e:         
+        return render_template("index.html", errors=e.virheet, error_kirja_tiedot=form, viitteet=[(x, str(x)) for x in lue_viitteet()])
     
 
 @app.route("/send_artikkeli", methods=["POST"])
@@ -58,8 +58,8 @@ def send_artikkeli():
         lisaa_viite(viite)
         return redirect("/")
 
-    except SyoteVirhe as e:        
-        return render_template("index.html", error=e, error_kirja_tiedot=form, viitteet=[(x, str(x)) for x in lue_viitteet()])
+    except SyoteVirhe as e:            
+        return render_template("index.html", errors=e.virheet, error_kirja_tiedot=form, viitteet=[(x, str(x)) for x in lue_viitteet()])
 
 @app.route('/poista_viitteet', methods=['POST'])
 def poista_viitteet():
