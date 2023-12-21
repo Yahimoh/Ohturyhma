@@ -8,7 +8,7 @@
 
 [Ominaisuudet](./ominaisuudet.md)
 
-[Raportti](./raportti.md)
+[Raportti](https://helsinkifi-my.sharepoint.com/:w:/g/personal/rellen_ad_helsinki_fi/EYNhEiAiCZxPu-hxSXR1s1UBuF90xmg1QzExuDQkUI_uJg?e=P7xT3d)
 
 
 ### Definition of done
